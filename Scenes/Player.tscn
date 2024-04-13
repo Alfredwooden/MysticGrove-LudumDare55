@@ -43,22 +43,22 @@ region = Rect2( 48, 16, 16, 16 )
 animations = [ {
 "frames": [ SubResource( 11 ), SubResource( 12 ) ],
 "loop": true,
-"name": "downwalk",
+"name": "Down",
 "speed": 6.0
 }, {
 "frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
 "loop": true,
-"name": "idle",
+"name": "Idle",
 "speed": 6.0
 }, {
 "frames": [ SubResource( 16 ), SubResource( 17 ) ],
 "loop": true,
-"name": "sidewalk",
+"name": "Sidewalk",
 "speed": 6.0
 }, {
 "frames": [ SubResource( 18 ), SubResource( 19 ) ],
 "loop": true,
-"name": "upwalk",
+"name": "Up",
 "speed": 6.0
 } ]
 
@@ -72,7 +72,7 @@ script = ExtResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 1, 1 )
 frames = SubResource( 10 )
-animation = "idle"
+animation = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1, 1 )
