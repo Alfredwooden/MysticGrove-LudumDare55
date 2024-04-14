@@ -44,9 +44,10 @@ click={
 
 [layer_names]
 
-2d_physics/layer_1="player"
-2d_physics/layer_2="summon"
-2d_physics/layer_3="enemy"
+2d_physics/layer_1="Tilemap"
+2d_physics/layer_3="Player"
+2d_physics/layer_4="Summon"
+2d_physics/layer_5="Enemy"
 
 [physics]
 

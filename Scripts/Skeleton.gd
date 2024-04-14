@@ -1,8 +1,12 @@
+#Skeleton.gd
 extends CharacterBody2D
+
+@onready var animations = $AnimatedSprite2D
+@onready var changeStateTimer = $Timers/ChangeState
+@onready var movingTimer = $Timers/Moving
 
 var idle = false
 var walking = false
-
 var xdir = 1
 var ydir = 1
 var speed = 20
@@ -18,12 +22,12 @@ func _ready():
 func _physics_process(delta):
 	var waitTime = 1
 	if walking == true:
-		$AnimatedSprite2D.play("Walking")
+		animations.play("Walking")
 		if moving_vertical_horizontal == 1:
 			if xdir == -1:
-				$AnimatedSprite2D.flip_h = true
+				animations.flip_h = true
 			if xdir == 1:
-				$AnimatedSprite2D.flip_h = false
+				animations.flip_h = false
 			motion.x = speed * xdir
 			motion.y = 0
 		elif moving_vertical_horizontal == 2:
@@ -31,7 +35,7 @@ func _physics_process(delta):
 			motion.x = 0
 			
 	if idle == true:
-		$AnimatedSprite2D.play("Idle")
+		animations.play("Idle")
 		motion.x = 0
 		motion.y = 0
 		
@@ -58,8 +62,8 @@ func _on_ChangeStateTimer_timeout():
 		walking = true
 		idle = false
 		waitTime = randf_range(2, 6)
-	$ChangeStateTimer.wait_time = waitTime
-	$ChangeStateTimer.start()
+	changeStateTimer.wait_time = waitTime
+	changeStateTimer.start()
 
 
 func _on_WalkingTimer_timeout():
@@ -75,6 +79,6 @@ func _on_WalkingTimer_timeout():
 		ydir = 1
 	else:
 		ydir = -1
-	$WalkingTimer.wait_time = waitTime
-	$WalkingTimer.start()
+	movingTimer.wait_time = waitTime
+	movingTimer.start()
 		

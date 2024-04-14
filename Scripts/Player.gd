@@ -3,18 +3,17 @@ extends CharacterBody2D
 
 @export var maxHealth = 3
 @export var knockbackPower: int = 500
+@export var speed: int = 50
 
 @onready var currentHealth: int = maxHealth
 @onready var effects = $Effects
 @onready var hurtTimer = $HurtTimer
 
 var isHurt: bool = false
-
 var enemyCollisions = []
 
 signal healthChanged
 
-var speed = 50
 var isometric_ratio = Vector2(1, 0.5)
 var motion = Vector2.ZERO
 
@@ -58,6 +57,7 @@ func handleCollision():
 		var collider = collision.get_collider()
 
 func hurtByEnemy(area):
+	pass
 	currentHealth -= 1
 	if currentHealth < 0: currentHealth = maxHealth
 	healthChanged.emit(currentHealth)

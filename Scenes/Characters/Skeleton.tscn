@@ -57,8 +57,8 @@ radius = 8.0
 [node name="Skeleton" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
-collision_layer = 2
-collision_mask = 2
+collision_layer = 8
+collision_mask = 20
 script = ExtResource("2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -70,11 +70,13 @@ animation = &"Walking"
 position = Vector2(0, -7)
 shape = SubResource("7")
 
-[node name="ChangeStateTimer" type="Timer" parent="."]
+[node name="Timers" type="Node" parent="."]
+
+[node name="ChangeState" type="Timer" parent="Timers"]
 autostart = true
 
-[node name="WalkingTimer" type="Timer" parent="."]
+[node name="Moving" type="Timer" parent="Timers"]
 autostart = true
 
-[connection signal="timeout" from="ChangeStateTimer" to="." method="_on_ChangeStateTimer_timeout"]
-[connection signal="timeout" from="WalkingTimer" to="." method="_on_WalkingTimer_timeout"]
+[connection signal="timeout" from="Timers/ChangeState" to="." method="_on_ChangeStateTimer_timeout"]
+[connection signal="timeout" from="Timers/Moving" to="." method="_on_WalkingTimer_timeout"]

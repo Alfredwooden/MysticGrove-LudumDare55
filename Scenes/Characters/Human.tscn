@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://2l2clqggacmm"]
+[gd_scene load_steps=12 format=3 uid="uid://2l2clqggacmm"]
 
 [ext_resource type="Script" path="res://Scripts/Human.gd" id="1_aidq6"]
 [ext_resource type="Texture2D" uid="uid://vuh1vf57hseg" path="res://Assets/Entities.png" id="1_gptmq"]
@@ -55,13 +55,16 @@ animations = [{
 radius = 9.05539
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6x1jt"]
-radius = 9.0
+radius = 8.94427
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sobfu"]
+radius = 71.4493
 
 [node name="Human" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
-collision_layer = 4
-collision_mask = 4
+collision_layer = 16
+collision_mask = 5
 script = ExtResource("1_aidq6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -74,10 +77,23 @@ position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_e76h1")
 
 [node name="HitBox" type="Area2D" parent="."]
-position = Vector2(-8, -14)
+position = Vector2(-7, -14)
+collision_layer = 16
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(8, 7)
 shape = SubResource("CircleShape2D_6x1jt")
 
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_sobfu")
+
 [node name="MoveTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

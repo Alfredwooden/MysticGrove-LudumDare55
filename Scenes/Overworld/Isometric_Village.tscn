@@ -93,6 +93,8 @@ sources/0 = SubResource("TileSetAtlasSource_gd3fl")
 
 [node name="Isometric_Village" type="StaticBody2D"]
 y_sort_enabled = true
+collision_layer = 0
+collision_mask = 0
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

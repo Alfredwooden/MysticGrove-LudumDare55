@@ -22,22 +22,25 @@ script = ExtResource("7")
 position = Vector2(160, 70)
 
 [node name="Human" parent="Isometric_Village" instance=ExtResource("12_g40di")]
-position = Vector2(94, 167)
+position = Vector2(128, 59)
 
 [node name="Player" parent="Isometric_Village" instance=ExtResource("2")]
 position = Vector2(95, 70)
 
 [node name="Summoning_Zone" parent="Isometric_Village" instance=ExtResource("5")]
-position = Vector2(48, 42)
-
-[node name="Summoning_Zone4" parent="Isometric_Village" instance=ExtResource("5")]
 position = Vector2(48, 26)
 
+[node name="Summoning_Zone4" parent="Isometric_Village" instance=ExtResource("5")]
+visible = false
+position = Vector2(48, 10)
+
 [node name="Summoning_Zone3" parent="Isometric_Village" instance=ExtResource("5")]
-position = Vector2(32, 34)
+visible = false
+position = Vector2(32, 18)
 
 [node name="Summoning_Zone2" parent="Isometric_Village" instance=ExtResource("5")]
-position = Vector2(64, 34)
+visible = false
+position = Vector2(64, 18)
 
 [node name="Shop" parent="Isometric_Village" instance=ExtResource("9")]
 position = Vector2(97, 33)
