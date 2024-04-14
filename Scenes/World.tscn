@@ -43,4 +43,4 @@ visible = false
 position = Vector2(64, 18)
 
 [node name="Shop" parent="Isometric_Village" instance=ExtResource("9")]
-position = Vector2(97, 32)
+position = Vector2(97, 33)

@@ -19,12 +19,12 @@ func _on_Area2D_area_entered(area):
 	if not soul_growing:
 		if soul == 1:
 			soul_growing = true
-			$Skull_Timer.start()
+			$Timers/Skull_Timer.start()
 			$Soul.play("Skulls_growing")
 			print("Skull growing")
 		elif soul == 2:
 			soul_growing = true
-			$Ghost_Timer.start()
+			$Timers/Ghost_Timer.start()
 			$Soul.play("Ghosts_growing")
 			print("Ghost growing")
 	else:
@@ -35,7 +35,7 @@ func _on_Skull_Timer_timeout():
 	if skull_soul.frame == 0:
 		print("Skull frame 1")
 		skull_soul.frame = 1
-		$Skull_Timer.start()
+		$Timers/Skull_Timer.start()
 	elif skull_soul.frame == 1:
 		print("Skull frame 2")
 		skull_soul.frame = 2
@@ -48,7 +48,7 @@ func _on_Ghost_Timer_timeout():
 	var ghost_soul = $Soul
 	if ghost_soul.frame == 0:
 		ghost_soul.frame = 1
-		$Ghost_Timer.start()
+		$Timers/Ghost_Timer.start()
 	elif ghost_soul.frame == 1:
 		ghost_soul.frame = 2
 	elif ghost_soul.frame == 2:

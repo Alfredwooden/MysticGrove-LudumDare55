@@ -149,20 +149,20 @@ animations = [{
 [node name="Summoning_Zone" type="StaticBody2D"]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(8, 8)
 script = ExtResource("3")
 
 [node name="Summoning_circle" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
 sprite_frames = SubResource("1")
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(0, 8)
+position = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_7xv3v")
 
 [node name="Soul" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 5)
+position = Vector2(0, -9)
 sprite_frames = SubResource("8")
 animation = &"None"
 
@@ -171,15 +171,17 @@ position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_s0vtc")
 frame_progress = 0.858441
 
-[node name="Skull_Timer" type="Timer" parent="."]
-wait_time = 2.0
-
-[node name="Ghost_Timer" type="Timer" parent="."]
-wait_time = 2.0
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="Skull_Timer" type="Timer" parent="Timers"]
+wait_time = 2.0
+
+[node name="Ghost_Timer" type="Timer" parent="Timers"]
+wait_time = 2.0
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]
-[connection signal="timeout" from="Skull_Timer" to="." method="_on_Skull_Timer_timeout"]
-[connection signal="timeout" from="Ghost_Timer" to="." method="_on_Ghost_Timer_timeout"]
+[connection signal="timeout" from="Timers/Skull_Timer" to="." method="_on_Skull_Timer_timeout"]
+[connection signal="timeout" from="Timers/Ghost_Timer" to="." method="_on_Ghost_Timer_timeout"]

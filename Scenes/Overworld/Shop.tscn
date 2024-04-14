@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dxa56fu4v1j81"]
+[gd_scene load_steps=14 format=3 uid="uid://dxa56fu4v1j81"]
 
 [ext_resource type="Texture2D" uid="uid://bubbaqlvdvs35" path="res://Assets/Character.png" id="1"]
 [ext_resource type="Script" path="res://Scripts/Shop.gd" id="3"]
@@ -37,67 +37,57 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o2r36"]
-atlas = ExtResource("3_1ctmm")
-region = Rect2(0, 111, 32, 37)
-
-[sub_resource type="SpriteFrames" id="2"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o2r36")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_s72yf"]
-radius = 10.0499
-
 [sub_resource type="CircleShape2D" id="8"]
-radius = 9.0
+radius = 6.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jkm15"]
+radius = 6.2033
+height = 24.6334
 
 [node name="Shop" type="StaticBody2D"]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(16, 13)
 script = ExtResource("3")
 
 [node name="Seller_Sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(3, -5)
+position = Vector2(2, -21)
 sprite_frames = SubResource("6")
 
-[node name="Shop_sprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
-shape = SubResource("CircleShape2D_s72yf")
+[node name="Shop_sprite" type="Sprite2D" parent="."]
+position = Vector2(-1, -15)
+texture = ExtResource("3_1ctmm")
+hframes = 6
+vframes = 6
+frame = 18
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-2, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-5, 11)
 shape = SubResource("8")
 
-[node name="Ghost_soulpack" parent="." instance=ExtResource("6")]
+[node name="CollisionShop" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -10)
+rotation = -1.05592
+shape = SubResource("CapsuleShape2D_jkm15")
+
+[node name="External" type="Node2D" parent="."]
+
+[node name="Ghost_soulpack" parent="External" instance=ExtResource("6")]
 visible = false
-position = Vector2(9, 12)
+position = Vector2(14, -7)
 
-[node name="Skull_soulpack" parent="." instance=ExtResource("5")]
+[node name="Skull_soulpack" parent="External" instance=ExtResource("5")]
 visible = false
-position = Vector2(9, 11)
+position = Vector2(8, -5)
 
-[node name="ShopMenu" parent="." instance=ExtResource("4")]
-visible = true
-z_index = 0
-y_sort_enabled = false
-position = Vector2(-40, -61)
+[node name="ShopMenu" parent="External" instance=ExtResource("4")]
+visible = false
 
-[node name="Sell_Zone" parent="." instance=ExtResource("7_h0rf6")]
+[node name="Sell_Zone" parent="External" instance=ExtResource("7_h0rf6")]
 y_sort_enabled = false
-position = Vector2(-6, 13)
+position = Vector2(-7, -4)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

@@ -1,17 +1,21 @@
 extends StaticBody2D
 
+@onready var shopMenu = $External/ShopMenu
+@onready var skullSoulpack = $External/Skull_soulpack
+@onready var ghostSoulpack = $External/Ghost_soulpack
+
 func _ready():
-	$ShopMenu.visible = false
+	shopMenu.visible = false
 
 func _process(delta):
-	if $ShopMenu.item_1_owned == true:
-		$Skull_soulpack.visible = true
-	if $ShopMenu.item_2_owned == true:
-		$Ghost_soulpack.visible = true
+	if shopMenu.item_1_owned == true:
+		skullSoulpack.visible = true
+	if shopMenu.item_2_owned == true:
+		ghostSoulpack.visible = true
 
 func _on_Area2D_body_entered(body):
 	if body.has_method("player_shop_method"):
-		$ShopMenu.visible = true
+		shopMenu.visible = true
 		
 func _on_Area2D_body_exited(body):
-	$ShopMenu.visible = false
+	shopMenu.visible = false
