@@ -4,6 +4,9 @@ var soul = Global.soul_selected
 var soul_growing = false
 var soul_grown = false
 
+func _ready():
+	$Summoning_circle.play("default")
+
 func _physics_process(delta):
 	if soul_growing == false:
 		soul = Global.soul_selected
@@ -68,4 +71,7 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 				$Soul.play("None")
 			else: 
 				pass
+			print("Number of Skulls => " + str(Global.num_of_skulls))
+			print("Number of Ghosts => " + str(Global.num_of_ghosts))
+			print("Number of Souls => " + str(Global.soul_coins))
 

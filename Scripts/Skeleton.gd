@@ -1,11 +1,11 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 var idle = false
 var walking = false
 
 var xdir = 1
 var ydir = 1
-var speed = 5
+var speed = 20
 
 var motion = Vector2()
 
@@ -18,12 +18,12 @@ func _ready():
 func _physics_process(delta):
 	var waitTime = 1
 	if walking == true:
-		$AnimatedSprite.play("Walking")
+		$AnimatedSprite2D.play("Walking")
 		if moving_vertical_horizontal == 1:
 			if xdir == -1:
-				$AnimatedSprite.flip_h = true
+				$AnimatedSprite2D.flip_h = true
 			if xdir == 1:
-				$AnimatedSprite.flip_h = false
+				$AnimatedSprite2D.flip_h = false
 			motion.x = speed * xdir
 			motion.y = 0
 		elif moving_vertical_horizontal == 2:
@@ -31,17 +31,18 @@ func _physics_process(delta):
 			motion.x = 0
 			
 	if idle == true:
-		$AnimatedSprite.play("Idle")
+		$AnimatedSprite2D.play("Idle")
 		motion.x = 0
 		motion.y = 0
 		
-	move_and_slide(motion)
+	set_velocity(motion)
+	move_and_slide()
 
 func _on_ChangeStateTimer_timeout():
 	var waitTime = 1
 	
 	if walking == false:
-		var x = rand_range(1, 2)
+		var x = randf_range(1, 2)
 		if x > 1.5:
 			moving_vertical_horizontal = 1
 		else:
@@ -51,20 +52,20 @@ func _on_ChangeStateTimer_timeout():
 	if walking == true:
 		idle = true
 		walking = false
-		waitTime = rand_range(1, 5)
+		waitTime = randf_range(1, 5)
 		
 	elif idle == true:
 		walking = true
 		idle = false
-		waitTime = rand_range(2, 6)
+		waitTime = randf_range(2, 6)
 	$ChangeStateTimer.wait_time = waitTime
 	$ChangeStateTimer.start()
 
 
 func _on_WalkingTimer_timeout():
-	var x = rand_range(1, 2)
-	var y = rand_range(1, 2)
-	var waitTime = rand_range(1, 4)
+	var x = randf_range(1, 2)
+	var y = randf_range(1, 2)
+	var waitTime = randf_range(1, 4)
 	
 	if x > 1.5:
 		xdir = 1

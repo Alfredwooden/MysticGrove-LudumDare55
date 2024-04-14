@@ -1,0 +1,102 @@
+[gd_scene load_steps=6 format=3 uid="uid://baiiyg2egvexe"]
+
+[ext_resource type="Script" path="res://Scripts/ui.gd" id="1_g72j6"]
+[ext_resource type="Texture2D" uid="uid://xuelymkgd7uh" path="res://Assets/Souls.png" id="2_u3rbj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhhvv"]
+atlas = ExtResource("2_u3rbj")
+region = Rect2(112.16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0oafd"]
+atlas = ExtResource("2_u3rbj")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86g16"]
+atlas = ExtResource("2_u3rbj")
+region = Rect2(16, 16, 16, 16)
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_g72j6")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+custom_minimum_size = Vector2(-9.12, 0)
+layout_mode = 2
+offset_left = 8.0
+offset_top = 182.0
+offset_right = 102.0
+offset_bottom = 262.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+color = Color(0.137255, 0.137255, 0.137255, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_qhhvv")
+expand_mode = 2
+
+[node name="SoulCoins" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_0oafd")
+expand_mode = 2
+
+[node name="SkullsCoins" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_86g16")
+expand_mode = 2
+
+[node name="GhostCoins" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2

@@ -4,7 +4,7 @@ var selected = false
 var seed_type = 2 #Ghost
 
 func _ready():
-	$AnimatedSprite.play("default")
+	$AnimatedSprite2D.play("default")
 
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
@@ -18,5 +18,5 @@ func _physics_process(delta):
 
 func _input(event):
 	if event is InputEventMouseButton: 
-		if event.button_index == BUTTON_LEFT and not event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			selected = false

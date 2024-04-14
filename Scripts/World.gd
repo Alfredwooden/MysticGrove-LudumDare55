@@ -7,14 +7,17 @@ const camera_position_2_x = -178
 const camera_position_2_y = 97
 
 func _ready():
-	$Area_2/ColorRect.rect_size.x = 50
+	$Area_2/ColorRect.size.x = 50
 
 
 func _physics_process(delta):
-	$Area_1/Skulls/SkullText.text = ("= " + str(Global.num_of_skulls))
-	$Area_1/Ghosts/GhostText.text = ("= " + str(Global.num_of_ghosts))
-	
-	$Area_1/SoulCoins/SoulText.text = ("= " + str(Global.soul_coins))
+	#$Area_1/Skulls/SkullText.text = ("= " + str(Global.num_of_skulls))
+	#$Area_1/Ghosts/GhostText.text = ("= " + str(Global.num_of_ghosts))
+	$UI/Control/MarginContainer/VBoxContainer/HBoxContainer/SoulCoins.text = ("= " + str(Global.soul_coins))
+	$UI/Control/MarginContainer/VBoxContainer/HBoxContainer3/GhostCoins.text = ("= " + str(Global.num_of_ghosts))
+	$UI/Control/MarginContainer/VBoxContainer/HBoxContainer2/SkullsCoins.text = ("= " + str(Global.num_of_skulls))
+	#
+	#$Area_1/SoulCoins/SoulText.text = ("= " + str(Global.soul_coins))
 	
 	if Global.camera_pos == 1:
 		$Camera2D.position.x = camera_position_1_x
