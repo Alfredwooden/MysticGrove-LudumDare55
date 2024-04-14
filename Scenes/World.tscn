@@ -19,7 +19,7 @@ script = ExtResource("7")
 [node name="Isometric_Village" parent="." instance=ExtResource("10_74lug")]
 
 [node name="Skeleton" parent="Isometric_Village" instance=ExtResource("3")]
-position = Vector2(160, 70)
+position = Vector2(47, 159)
 
 [node name="Human" parent="Isometric_Village" instance=ExtResource("12_g40di")]
 position = Vector2(94, 167)

@@ -7,8 +7,8 @@ extends CharacterBody2D
 @onready var changeStateTimer = $Timers/ChangeState
 @onready var movingTimer = $Timers/Moving
 
-var player_chase = false
-var player = null
+var is_chasing = false
+var chase_target = null
 
 var idle = false
 var walking = false
@@ -24,8 +24,8 @@ func _ready():
 	movingTimer.start()
 
 func updateVelocity():
-	if player_chase and is_instance_valid(player):
-		motion = (player.position - position).normalized() * speed
+	if is_chasing and is_instance_valid(chase_target):
+		motion = (chase_target.position - position).normalized() * speed
 	else:
 		if walking:
 			if moving_vertical_horizontal == 1:
@@ -42,7 +42,7 @@ func updateVelocity():
 			motion.x = 0
 			motion.y = 0
 	
-	if not player_chase and motion.length() < limit:
+	if not is_chasing and motion.length() < limit:
 		if walking:
 			motion = motion.normalized() * speed
 		else:
@@ -51,7 +51,7 @@ func updateVelocity():
 	velocity = motion
 
 func updateAnimation():
-	if player_chase and is_instance_valid(player):
+	if is_chasing and is_instance_valid(chase_target):
 		animations.play("Chasing")
 	else:
 		if walking:
@@ -65,14 +65,14 @@ func _physics_process(delta):
 	updateAnimation()
 
 func _on_detection_area_body_entered(body):
-	if body.is_in_group("Player"):
-		player = body
-		player_chase = true
+	if body.is_in_group("Player") || body.is_in_group("Summon"):
+		chase_target = body
+		is_chasing = true
 
 func _on_detection_area_body_exited(body):
-	if body == player:
-		player = null
-		player_chase = false
+	if body == chase_target:
+		chase_target = null
+		is_chasing = false
 
 func _on_ChangeStateTimer_timeout():
 	var waitTime = 1

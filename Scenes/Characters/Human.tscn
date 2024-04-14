@@ -1,51 +1,51 @@
-[gd_scene load_steps=15 format=3 uid="uid://2l2clqggacmm"]
+[gd_scene load_steps=16 format=3 uid="uid://2l2clqggacmm"]
 
 [ext_resource type="Script" path="res://Scripts/Human.gd" id="1_aidq6"]
 [ext_resource type="Texture2D" uid="uid://vuh1vf57hseg" path="res://Assets/Entities.png" id="1_gptmq"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3sg24"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2m34f"]
 atlas = ExtResource("1_gptmq")
-region = Rect2(48, 48, 16, 16)
+region = Rect2(48, 80, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_88q1y"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4xpl"]
 atlas = ExtResource("1_gptmq")
-region = Rect2(64, 48, 16, 16)
+region = Rect2(64, 80, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q3wkf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ot780"]
 atlas = ExtResource("1_gptmq")
-region = Rect2(80, 48, 16, 16)
+region = Rect2(80, 80, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_plue2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwv3l"]
 atlas = ExtResource("1_gptmq")
-region = Rect2(0, 32, 16, 16)
+region = Rect2(0, 64, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vn5jw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvwfo"]
 atlas = ExtResource("1_gptmq")
-region = Rect2(16, 32, 16, 16)
+region = Rect2(16, 64, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vsh2w"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1awrs"]
 atlas = ExtResource("1_gptmq")
-region = Rect2(48, 32, 16, 16)
+region = Rect2(48, 64, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q3rvr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsntl"]
 atlas = ExtResource("1_gptmq")
-region = Rect2(64, 32, 16, 16)
+region = Rect2(64, 64, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_blcml"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdmhb"]
 atlas = ExtResource("1_gptmq")
-region = Rect2(80, 32, 16, 16)
+region = Rect2(80, 64, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pi26r"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3sg24")
+"texture": SubResource("AtlasTexture_2m34f")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_88q1y")
+"texture": SubResource("AtlasTexture_x4xpl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q3wkf")
+"texture": SubResource("AtlasTexture_ot780")
 }],
 "loop": true,
 "name": &"Chasing",
@@ -53,24 +53,24 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_plue2")
+"texture": SubResource("AtlasTexture_bwv3l")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vn5jw")
+"texture": SubResource("AtlasTexture_gvwfo")
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 2.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vsh2w")
+"texture": SubResource("AtlasTexture_1awrs")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q3rvr")
+"texture": SubResource("AtlasTexture_gsntl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_blcml")
+"texture": SubResource("AtlasTexture_hdmhb")
 }],
 "loop": true,
 "name": &"Walk",
@@ -86,17 +86,21 @@ radius = 8.94427
 [sub_resource type="CircleShape2D" id="CircleShape2D_sobfu"]
 radius = 71.4493
 
-[node name="Human" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4tlbm"]
+radius = 6.0
+height = 16.0
+
+[node name="Human" type="CharacterBody2D" groups=["Enemy"]]
 z_index = 1
 y_sort_enabled = true
-collision_layer = 16
-collision_mask = 5
+collision_layer = 24
+collision_mask = 13
 script = ExtResource("1_aidq6")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Enemy"]]
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_pi26r")
-animation = &"Chasing"
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7)
@@ -104,20 +108,29 @@ shape = SubResource("CircleShape2D_e76h1")
 
 [node name="HitBox" type="Area2D" parent="."]
 position = Vector2(-7, -14)
-collision_layer = 16
-collision_mask = 4
+collision_layer = 12
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(8, 7)
 shape = SubResource("CircleShape2D_6x1jt")
 
 [node name="DetectionArea" type="Area2D" parent="."]
-collision_layer = 16
-collision_mask = 4
+collision_layer = 12
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_sobfu")
+
+[node name="HurtBox" type="Area2D" parent="."]
+position = Vector2(0, -1)
+collision_layer = 12
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(1, -1)
+shape = SubResource("CapsuleShape2D_4tlbm")
 
 [node name="Timers" type="Node" parent="."]
 
@@ -128,6 +141,8 @@ autostart = true
 [node name="Moving" type="Timer" parent="Timers"]
 wait_time = 0.5
 autostart = true
+
+[node name="Colliders" type="Node" parent="."]
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

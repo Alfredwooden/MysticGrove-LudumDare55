@@ -1,7 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwx8r72rlijnl"]
+[gd_scene load_steps=16 format=3 uid="uid://bwx8r72rlijnl"]
 
 [ext_resource type="Texture2D" uid="uid://vuh1vf57hseg" path="res://Assets/Entities.png" id="1"]
 [ext_resource type="Script" path="res://Scripts/Skeleton.gd" id="2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0oga"]
+atlas = ExtResource("1")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jnmj"]
+atlas = ExtResource("1")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_valpw"]
+atlas = ExtResource("1")
+region = Rect2(80, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="5"]
 atlas = ExtResource("1")
@@ -25,6 +37,20 @@ region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="4"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0oga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jnmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_valpw")
+}],
+"loop": true,
+"name": &"Chasing",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("5")
@@ -54,21 +80,57 @@ animations = [{
 [sub_resource type="CircleShape2D" id="7"]
 radius = 8.0
 
-[node name="Skeleton" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s7x0s"]
+radius = 6.0
+height = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ht0tq"]
+radius = 8.94427
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5prcs"]
+radius = 71.4493
+
+[node name="Skeleton" type="CharacterBody2D" groups=["Summon"]]
 z_index = 1
 y_sort_enabled = true
-collision_layer = 8
-collision_mask = 20
+collision_layer = 20
+collision_mask = 28
 script = ExtResource("2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -7)
 sprite_frames = SubResource("4")
-animation = &"Walking"
+animation = &"Chasing"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7)
 shape = SubResource("7")
+
+[node name="HurtBox" type="Area2D" parent="."]
+position = Vector2(0, -1)
+collision_layer = 24
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(1, -1)
+shape = SubResource("CapsuleShape2D_s7x0s")
+
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(-7, -14)
+collision_layer = 24
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(8, 7)
+shape = SubResource("CircleShape2D_ht0tq")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 24
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_5prcs")
 
 [node name="Timers" type="Node" parent="."]
 
@@ -78,5 +140,7 @@ autostart = true
 [node name="Moving" type="Timer" parent="Timers"]
 autostart = true
 
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_DetectionArea_body_exited"]
 [connection signal="timeout" from="Timers/ChangeState" to="." method="_on_ChangeStateTimer_timeout"]
 [connection signal="timeout" from="Timers/Moving" to="." method="_on_WalkingTimer_timeout"]

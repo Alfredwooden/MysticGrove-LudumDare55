@@ -1,4 +1,5 @@
 # Player.gd
+
 extends CharacterBody2D
 
 @export var maxHealth = 3
@@ -22,23 +23,23 @@ func _ready():
 
 func _physics_process(delta):
 	if Input.is_action_pressed("ui_right"):
-		$AnimatedSprite2D.play("Sidewalk")
+		$AnimatedSprite2D.play("Walk")
 		$AnimatedSprite2D.flip_h = true
 		motion = Vector2(speed, speed * isometric_ratio.y)
 	elif Input.is_action_pressed("ui_left"):
-		$AnimatedSprite2D.play("Sidewalk")
+		$AnimatedSprite2D.play("Walk")
 		$AnimatedSprite2D.flip_h = false
 		motion = Vector2(-speed, -speed * isometric_ratio.y)
 	elif Input.is_action_pressed("ui_down"):
-		$AnimatedSprite2D.play("Down")
+		$AnimatedSprite2D.play("Walk")
 		motion = Vector2(-speed, speed * isometric_ratio.y)
 	elif Input.is_action_pressed("ui_up"):
-		$AnimatedSprite2D.play("Up")
+		$AnimatedSprite2D.play("Walk")
 		motion = Vector2(speed, -speed * isometric_ratio.y)
 	else:
 		$AnimatedSprite2D.play("Idle")
 		motion = Vector2.ZERO
-		
+	
 	if self.position.x < 15:
 		Global.camera_pos = 2
 	else:
@@ -47,6 +48,7 @@ func _physics_process(delta):
 	set_velocity(motion)
 	move_and_slide()
 	handleCollision()
+	
 	if !isHurt:
 		for enemyArea in enemyCollisions:
 			hurtByEnemy(enemyArea)
@@ -62,7 +64,6 @@ func hurtByEnemy(area):
 	if currentHealth < 0: currentHealth = maxHealth
 	healthChanged.emit(currentHealth)
 	isHurt = true
-
 	knockback(area.get_parent().velocity)
 	effects.play("HurtBlink")
 	hurtTimer.start()
@@ -84,7 +85,9 @@ func knockback(enemyVelocity: Vector2):
 
 func player():
 	pass
+
 func player_sell_method():
 	pass
+
 func player_shop_method():
 	pass
