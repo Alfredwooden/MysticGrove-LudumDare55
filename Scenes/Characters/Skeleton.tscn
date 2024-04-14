@@ -34,7 +34,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -48,33 +48,33 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walking",
-"speed": 6.0
+"speed": 4.0
 }]
 
 [sub_resource type="CircleShape2D" id="7"]
-radius = 6.0
+radius = 8.0
 
-[node name="Skeleton3D" type="CharacterBody2D"]
+[node name="Skeleton" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(7, 7)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -7)
 sprite_frames = SubResource("4")
-animation = &"Idle"
-frame = 1
+animation = &"Walking"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("7")
 
 [node name="ChangeStateTimer" type="Timer" parent="."]
 autostart = true
 
 [node name="WalkingTimer" type="Timer" parent="."]
 autostart = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("7")
 
 [connection signal="timeout" from="ChangeStateTimer" to="." method="_on_ChangeStateTimer_timeout"]
 [connection signal="timeout" from="WalkingTimer" to="." method="_on_WalkingTimer_timeout"]

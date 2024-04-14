@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bteq651d33c6s" path="res://Assets/Isometric_Tiles.png" id="3_1ctmm"]
 [ext_resource type="PackedScene" uid="uid://cp8k0gvt4h1re" path="res://Scenes/UI/ShopMenu.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bih1ryx3mj5ok" path="res://Scenes/Farming/Skull_soulpack.tscn" id="5"]
-[ext_resource type="PackedScene" path="res://Scenes/Farming/Ghost_soulpack.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://dkud8ij8qu2dh" path="res://Scenes/Farming/Ghost_soulpack.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://ciqn4p8aes3mk" path="res://Scenes/Overworld/Sell_Zone.tscn" id="7_h0rf6"]
 
 [sub_resource type="AtlasTexture" id="3"]
@@ -92,9 +92,11 @@ position = Vector2(9, 11)
 [node name="ShopMenu" parent="." instance=ExtResource("4")]
 visible = true
 z_index = 0
+y_sort_enabled = false
 position = Vector2(-40, -61)
 
 [node name="Sell_Zone" parent="." instance=ExtResource("7_h0rf6")]
+y_sort_enabled = false
 position = Vector2(-6, 13)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

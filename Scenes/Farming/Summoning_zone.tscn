@@ -153,7 +153,6 @@ position = Vector2(8, 8)
 script = ExtResource("3")
 
 [node name="Summoning_circle" type="AnimatedSprite2D" parent="."]
-y_sort_enabled = true
 sprite_frames = SubResource("1")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -163,7 +162,7 @@ position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_7xv3v")
 
 [node name="Soul" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 7)
+position = Vector2(0, 5)
 sprite_frames = SubResource("8")
 animation = &"None"
 
