@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://2l2clqggacmm"]
+[gd_scene load_steps=19 format=3 uid="uid://2l2clqggacmm"]
 
 [ext_resource type="Script" path="res://Scripts/Human.gd" id="1_aidq6"]
 [ext_resource type="Texture2D" uid="uid://vuh1vf57hseg" path="res://Assets/Entities.png" id="1_gptmq"]
@@ -77,18 +77,59 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_e76h1"]
-radius = 9.05539
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c5dd5"]
+radius = 4.0
+height = 14.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6x1jt"]
-radius = 8.94427
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nrkqm"]
+radius = 5.0
+height = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sobfu"]
-radius = 71.4493
+radius = 32.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4tlbm"]
-radius = 6.0
-height = 16.0
+radius = 5.0
+height = 14.0
+
+[sub_resource type="Animation" id="Animation_8cfve"]
+resource_name = "HurtBlink"
+length = 0.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0001, 0.199541),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.45098, 0.0901961, 0.176471, 0.494118), Color(1, 1, 1, 0.592157)]
+}
+
+[sub_resource type="Animation" id="Animation_p43t6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.45098, 0.0901961, 0.176471, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iyx25"]
+_data = {
+"HurtBlink": SubResource("Animation_8cfve"),
+"RESET": SubResource("Animation_p43t6")
+}
 
 [node name="Human" type="CharacterBody2D" groups=["Enemy"]]
 z_index = 1
@@ -97,23 +138,30 @@ collision_layer = 24
 collision_mask = 13
 script = ExtResource("1_aidq6")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Enemy"]]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+clip_children = 2
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_pi26r")
 animation = &"Idle"
 
+[node name="ColorRect" type="ColorRect" parent="AnimatedSprite2D"]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(0.45098, 0.0901961, 0.176471, 0)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7)
-shape = SubResource("CircleShape2D_e76h1")
+shape = SubResource("CapsuleShape2D_c5dd5")
 
 [node name="HitBox" type="Area2D" parent="."]
-position = Vector2(-7, -14)
-collision_layer = 12
+position = Vector2(0, -7)
+collision_layer = 16
 collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(8, 7)
-shape = SubResource("CircleShape2D_6x1jt")
+shape = SubResource("CapsuleShape2D_nrkqm")
 
 [node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 12
@@ -124,12 +172,11 @@ position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_sobfu")
 
 [node name="HurtBox" type="Area2D" parent="."]
-position = Vector2(0, -1)
-collision_layer = 12
+position = Vector2(0, -7)
+collision_layer = 28
 collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(1, -1)
 shape = SubResource("CapsuleShape2D_4tlbm")
 
 [node name="Timers" type="Node" parent="."]
@@ -142,9 +189,17 @@ autostart = true
 wait_time = 0.5
 autostart = true
 
-[node name="Colliders" type="Node" parent="."]
+[node name="HurtTimer" type="Timer" parent="Timers"]
+wait_time = 0.3
+one_shot = true
+
+[node name="Effects" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_iyx25")
+}
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
 [connection signal="timeout" from="Timers/ChangeState" to="." method="_on_ChangeStateTimer_timeout"]
 [connection signal="timeout" from="Timers/Moving" to="." method="_on_Moving_timeout"]

@@ -2,13 +2,22 @@ extends CharacterBody2D
 
 @export var speed = 20
 @export var limit = 0.5
+@export var maxHealth = 3
+@export var knockbackPower: int = 500
 
 @onready var animations = $AnimatedSprite2D
 @onready var changeStateTimer = $Timers/ChangeState
 @onready var movingTimer = $Timers/Moving
+@onready var hurtTimer = $Timers/HurtTimer
+@onready var hurtBox = $HurtBox
+@onready var hitBox = $HitBox
+@onready var effects = $Effects
 
 var is_chasing = false
 var chase_target = null
+var currentHealth = maxHealth
+var isHurt: bool = false
+var enemyCollisions = []
 
 var idle = false
 var walking = false
@@ -22,6 +31,7 @@ func _ready():
 	randomize()
 	changeStateTimer.start()
 	movingTimer.start()
+	effects.play("RESET")
 
 func updateVelocity():
 	if is_chasing and is_instance_valid(chase_target):
@@ -53,16 +63,19 @@ func updateVelocity():
 func updateAnimation():
 	if is_chasing and is_instance_valid(chase_target):
 		animations.play("Chasing")
+	elif walking:
+		animations.play("Walk")
 	else:
-		if walking:
-			animations.play("Walk")
-		else:
-			animations.play("Idle")
+		animations.play("Idle")
 
 func _physics_process(delta):
-	updateVelocity()
-	move_and_slide()
-	updateAnimation()
+	if !isHurt:
+		updateVelocity()
+		move_and_slide()
+		updateAnimation()
+		
+		for enemyArea in enemyCollisions:
+			hurtByEnemy(enemyArea)
 
 func _on_detection_area_body_entered(body):
 	if body.is_in_group("Player") || body.is_in_group("Summon"):
@@ -112,4 +125,34 @@ func _on_Moving_timeout():
 	
 	movingTimer.wait_time = waitTime
 	movingTimer.start()
-	print("WalkingTimer started. xdir: ", xdir, " ydir: ", ydir, " Wait time: ", waitTime)
+
+func _on_HurtBox_area_entered(area):
+	if area.name == "HitBox" and area.get_parent().is_in_group("Summon"):
+		enemyCollisions.append(area)
+
+func _on_HurtBox_area_exited(area):
+	enemyCollisions.erase(area)
+
+func hurtByEnemy(area):
+	if !isHurt:
+		takeDamage(1)
+		isHurt = true
+		knockback(area.get_parent().velocity)
+		effects.play("HurtBlink")
+		hurtTimer.start()
+		await hurtTimer.timeout
+		effects.play("RESET")
+		isHurt = false
+
+func takeDamage(damage):
+	currentHealth -= damage
+	if currentHealth <= 0:
+		die()
+
+func die():
+	queue_free()
+
+func knockback(enemyVelocity: Vector2):
+	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
+	velocity = knockbackDirection
+	move_and_slide()
