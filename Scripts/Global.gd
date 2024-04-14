@@ -12,6 +12,9 @@ var skull_souls = 0
 
 var camera_pos
 
+var enemy_spawn_point
+var summon_spawn_point
+
 # --------- CUTSCENES -------- #
 var current_cutscene
 

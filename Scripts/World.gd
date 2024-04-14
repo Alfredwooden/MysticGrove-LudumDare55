@@ -14,6 +14,9 @@ func _ready():
 	heartContainer.setMaxHearts(player.maxHealth)
 	heartContainer.updateHearts(player.currentHealth)	
 	player.healthChanged.connect(heartContainer.updateHearts)
+	Global.enemy_spawn_point = $Isometric_Village/Spawns/HumanSpawnPoint
+	Global.summon_spawn_point = $Isometric_Village/Spawns/SummonSpawnPoint
+
 
 func _physics_process(delta):
 	$UI/Control/MarginContainer/Souls/SoulsContainer/Souls_GUI/SoulsLabel.text  = "= " + str(Global.get_soul_coins())

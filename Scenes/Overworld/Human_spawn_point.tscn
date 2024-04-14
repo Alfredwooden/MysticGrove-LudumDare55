@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://yb8ckkxwpdgq"]
+
+[ext_resource type="Texture2D" uid="uid://bteq651d33c6s" path="res://Assets/Isometric_Tiles.png" id="1_2gn2f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqtx8"]
+atlas = ExtResource("1_2gn2f")
+region = Rect2(160, 192, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i1lvn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqtx8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="HumanSpawnPoint" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_i1lvn")
