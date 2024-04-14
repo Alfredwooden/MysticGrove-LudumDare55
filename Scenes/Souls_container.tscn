@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3wr1c4t1rc54"]
+
+[ext_resource type="PackedScene" uid="uid://cmr1f88cmx4qw" path="res://Scenes/Souls_gui.tscn" id="1_cqfas"]
+[ext_resource type="PackedScene" uid="uid://dn7hjytphpmsw" path="res://Scenes/Ghost_gui.tscn" id="2_8rjkv"]
+[ext_resource type="PackedScene" uid="uid://bgrhesmi4ccnx" path="res://Scenes/Skulls_gui.tscn" id="3_wp4l7"]
+
+[node name="SoulsContainer" type="HBoxContainer"]
+offset_right = 112.0
+offset_bottom = 14.0
+theme_override_constants/separation = 8
+
+[node name="Souls_GUI" parent="." instance=ExtResource("1_cqfas")]
+layout_mode = 2
+
+[node name="Ghosts_GUI" parent="." instance=ExtResource("2_8rjkv")]
+layout_mode = 2
+
+[node name="Skulls_GUI" parent="." instance=ExtResource("3_wp4l7")]
+layout_mode = 2

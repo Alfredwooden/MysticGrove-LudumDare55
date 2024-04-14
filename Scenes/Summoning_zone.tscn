@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cjkh0q0e0201v"]
+[gd_scene load_steps=23 format=3 uid="uid://cjkh0q0e0201v"]
 
 [ext_resource type="Texture2D" uid="uid://xuelymkgd7uh" path="res://Assets/Souls.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://bteq651d33c6s" path="res://Assets/Isometric_Tiles.png" id="2_08yap"]
@@ -117,6 +117,35 @@ animations = [{
 "speed": 0.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_knkid"]
+atlas = ExtResource("2")
+region = Rect2(80, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hp5nc"]
+atlas = ExtResource("2")
+region = Rect2(96, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spdbe"]
+atlas = ExtResource("2")
+region = Rect2(112, 64, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s0vtc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knkid")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hp5nc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spdbe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
 [node name="Summoning_Zone" type="StaticBody2D"]
 z_index = 1
 y_sort_enabled = true
@@ -137,6 +166,11 @@ shape = SubResource("CircleShape2D_7xv3v")
 position = Vector2(0, 7)
 sprite_frames = SubResource("8")
 animation = &"None"
+
+[node name="SoulArrow" type="AnimatedSprite2D" parent="Soul"]
+position = Vector2(0, -6)
+sprite_frames = SubResource("SpriteFrames_s0vtc")
+frame_progress = 0.858441
 
 [node name="Skull_Timer" type="Timer" parent="."]
 wait_time = 2.0

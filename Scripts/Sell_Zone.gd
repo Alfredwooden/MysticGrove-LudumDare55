@@ -2,19 +2,16 @@ extends StaticBody2D
 
 func _on_Area2D_body_entered(body):
 	if body.has_method("player_sell_method"):
-		var skulls = Global.num_of_skulls
-		var ghosts = Global.num_of_ghosts
+		# Retrieve the current counts
+		var skulls = Global.get_skull_souls()
+		var ghosts = Global.get_ghost_souls()
 		
-		var soul_coins = Global.soul_coins
+		# Calculate the new amount of soul coins
+		var soul_coins = Global.get_soul_coins() + (skulls * 1) + (ghosts * 5)
 		
-		# Skulls = 1 coins / Ghosts = 5 coins
+		# Reset the counts of skulls and ghosts
+		Global.set_skull_souls(0)
+		Global.set_ghost_souls(0)
 		
-		soul_coins += skulls * 1
-		soul_coins += ghosts * 5
-		
-		skulls = 0
-		ghosts = 0
-		
-		Global.soul_coins = soul_coins
-		Global.num_of_skulls = skulls
-		Global.num_of_ghosts = ghosts
+		# Update the soul coins
+		Global.set_soul_coins(soul_coins)

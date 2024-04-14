@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw1fi5tfstyfq"]
+
+[ext_resource type="Script" path="res://Scripts/hearth_gui.gd" id="1_hav1d"]
+[ext_resource type="Texture2D" uid="uid://xuelymkgd7uh" path="res://Assets/Souls.png" id="1_jnhhj"]
+
+[node name="HearthGUI" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(16, 12)
+offset_right = 16.0
+offset_bottom = 12.0
+script = ExtResource("1_hav1d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("1_jnhhj")
+centered = false
+hframes = 8
+vframes = 8
+frame = 29

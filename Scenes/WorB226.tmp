@@ -1,5 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://2n4a0bfcydq8"]
+[gd_scene load_steps=31 format=3 uid="uid://2n4a0bfcydq8"]
 
+[ext_resource type="Texture2D" uid="uid://bnm5g0krxbhvy" path="res://Assets/Tiles.png" id="1"]
 [ext_resource type="PackedScene" uid="uid://ct1tu3wgxxivw" path="res://Scenes/Player.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://baiiyg2egvexe" path="res://Scenes/ui.tscn" id="2_ur70f"]
 [ext_resource type="PackedScene" uid="uid://bwx8r72rlijnl" path="res://Scenes/Skeleton.tscn" id="3"]
@@ -10,11 +11,140 @@
 [ext_resource type="PackedScene" uid="uid://ciqn4p8aes3mk" path="res://Scenes/Sell_Zone.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://dxa56fu4v1j81" path="res://Scenes/Shop.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://5mcvsglxljxu" path="res://Scenes/Isometric_Village.tscn" id="10_74lug"]
-[ext_resource type="PackedScene" uid="uid://2l2clqggacmm" path="res://Scenes/Human.tscn" id="12_g40di"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4glva"]
+texture = ExtResource("1")
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6gw6c"]
+texture = ExtResource("1")
+margins = Vector2i(16, 0)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ttuc"]
+texture = ExtResource("1")
+margins = Vector2i(32, 0)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
 
 [sub_resource type="TileSet" id="1"]
+sources/0 = SubResource("TileSetAtlasSource_4glva")
+sources/1 = SubResource("TileSetAtlasSource_6gw6c")
+sources/2 = SubResource("TileSetAtlasSource_0ttuc")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_40hgb"]
+texture = ExtResource("1")
+margins = Vector2i(64, 0)
+texture_region_size = Vector2i(1, 1)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ercxt"]
+texture = ExtResource("1")
+margins = Vector2i(64, 0)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
 
 [sub_resource type="TileSet" id="2"]
+sources/0 = SubResource("TileSetAtlasSource_40hgb")
+sources/1 = SubResource("TileSetAtlasSource_ercxt")
 
 [sub_resource type="AtlasTexture" id="3"]
 atlas = ExtResource("6")
@@ -58,7 +188,84 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="7"]
 size = Vector2(20, 193)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_avh8p"]
+texture = ExtResource("1")
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8lejf"]
+texture = ExtResource("1")
+margins = Vector2i(16, 0)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qbm4l"]
+texture = ExtResource("1")
+margins = Vector2i(32, 0)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+
 [sub_resource type="TileSet" id="8"]
+sources/0 = SubResource("TileSetAtlasSource_avh8p")
+sources/1 = SubResource("TileSetAtlasSource_8lejf")
+sources/2 = SubResource("TileSetAtlasSource_qbm4l")
 
 [sub_resource type="Animation" id="10"]
 length = 2.0
@@ -249,15 +456,11 @@ script = ExtResource("7")
 
 [node name="UI" parent="." instance=ExtResource("2_ur70f")]
 
-[node name="Skeleton" parent="." instance=ExtResource("3")]
+[node name="Skeleton3D" parent="." instance=ExtResource("3")]
 position = Vector2(176, 125)
 
 [node name="Player" parent="." instance=ExtResource("2")]
 position = Vector2(95, 67)
-
-[node name="Human" parent="." instance=ExtResource("12_g40di")]
-z_index = 1
-position = Vector2(115, 59)
 
 [node name="Area_1" type="StaticBody2D" parent="."]
 
@@ -385,7 +588,6 @@ libraries = {
 visible = false
 position = Vector2(-178, 97)
 scale = Vector2(10, 10)
-position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_horizontal_offset = 0.23

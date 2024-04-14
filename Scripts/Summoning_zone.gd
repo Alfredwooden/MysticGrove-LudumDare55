@@ -1,33 +1,34 @@
+# Summoning_Zone.gd
 extends StaticBody2D
 
-var soul = Global.soul_selected
+var soul = Global.get_soul_selected()
 var soul_growing = false
 var soul_grown = false
 
 func _ready():
 	$Summoning_circle.play("default")
+	if not soul_growing:
+		$Soul/SoulArrow.play("default")
 
 func _physics_process(delta):
-	if soul_growing == false:
-		soul = Global.soul_selected
-
+	if not soul_growing:
+		soul = Global.get_soul_selected()
+		$Soul/SoulArrow.play("default")
 
 func _on_Area2D_area_entered(area):
-	if not soul_growing: 
+	if not soul_growing:
 		if soul == 1:
 			soul_growing = true
 			$Skull_Timer.start()
 			$Soul.play("Skulls_growing")
 			print("Skull growing")
-		if soul == 2:
+		elif soul == 2:
 			soul_growing = true
 			$Ghost_Timer.start()
 			$Soul.play("Ghosts_growing")
-			$Soul.play()
 			print("Ghost growing")
 	else:
 		print("Soul is already being summoned")
-
 
 func _on_Skull_Timer_timeout():
 	var skull_soul = $Soul
@@ -43,7 +44,6 @@ func _on_Skull_Timer_timeout():
 		skull_soul.frame = 3
 		soul_grown = true
 
-
 func _on_Ghost_Timer_timeout():
 	var ghost_soul = $Soul
 	if ghost_soul.frame == 0:
@@ -55,23 +55,19 @@ func _on_Ghost_Timer_timeout():
 		ghost_soul.frame = 3
 		soul_grown = true
 
-
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if Input.is_action_just_pressed("click"):
 		if soul_grown:
 			if soul == 1:
-				Global.num_of_skulls += 1
+				Global.set_skull_souls(Global.get_skull_souls() + 1)
 				soul_growing = false
 				soul_grown = false
 				$Soul.play("None")
-			if soul == 2:
-				Global.num_of_ghosts += 1
+			elif soul == 2:
+				Global.set_ghost_souls(Global.get_ghost_souls() + 1)
 				soul_growing = false
 				soul_grown = false
 				$Soul.play("None")
-			else: 
-				pass
-			print("Number of Skulls => " + str(Global.num_of_skulls))
-			print("Number of Ghosts => " + str(Global.num_of_ghosts))
-			print("Number of Souls => " + str(Global.soul_coins))
-
+			print("Number of Skulls => " + str(Global.get_skull_souls()))
+			print("Number of Ghosts => " + str(Global.get_ghost_souls()))
+			print("Number of Souls => " + str(Global.get_soul_coins()))

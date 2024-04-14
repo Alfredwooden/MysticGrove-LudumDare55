@@ -58,6 +58,8 @@ radius = 6.0
 z_index = 1
 y_sort_enabled = true
 position = Vector2(7, 7)
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
