@@ -1,3 +1,4 @@
+# Human.gd
 extends CharacterBody2D
 
 @export var speed = 20

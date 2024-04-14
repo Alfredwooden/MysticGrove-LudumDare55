@@ -1,5 +1,5 @@
+# Player.gd
 extends CharacterBody2D
-
 
 @export var maxHealth = 3
 @export var knockbackPower: int = 500
@@ -74,17 +74,13 @@ func _on_area_2d_area_entered(area):
 	if area.name == "HitBox":
 		enemyCollisions.append(area)
 
-
-
 func _on_hurt_box_area_exited(area):
 	enemyCollisions.erase(area)
-
 
 func knockback(enemyVelocity: Vector2):
 	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
 	velocity = knockbackDirection
 	move_and_slide()
-
 
 func player():
 	pass

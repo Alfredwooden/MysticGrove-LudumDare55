@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://b3wr1c4t1rc54"]
 
-[ext_resource type="PackedScene" uid="uid://cmr1f88cmx4qw" path="res://Scenes/Souls_gui.tscn" id="1_cqfas"]
-[ext_resource type="PackedScene" uid="uid://dn7hjytphpmsw" path="res://Scenes/Ghost_gui.tscn" id="2_8rjkv"]
-[ext_resource type="PackedScene" uid="uid://bgrhesmi4ccnx" path="res://Scenes/Skulls_gui.tscn" id="3_wp4l7"]
+[ext_resource type="PackedScene" uid="uid://cmr1f88cmx4qw" path="res://Scenes/UI/Souls_gui.tscn" id="1_cqfas"]
+[ext_resource type="PackedScene" uid="uid://dn7hjytphpmsw" path="res://Scenes/UI/Ghost_gui.tscn" id="2_8rjkv"]
+[ext_resource type="PackedScene" uid="uid://bgrhesmi4ccnx" path="res://Scenes/UI/Skulls_gui.tscn" id="3_wp4l7"]
 
 [node name="SoulsContainer" type="HBoxContainer"]
 offset_right = 112.0
