@@ -17,11 +17,21 @@ script = ExtResource("7")
 [node name="UI" parent="." instance=ExtResource("2_ur70f")]
 
 [node name="Isometric_Village" parent="." instance=ExtResource("10_74lug")]
+position = Vector2(-12, -25)
 
 [node name="Skeleton" parent="Isometric_Village" instance=ExtResource("3")]
 position = Vector2(121, 133)
 
 [node name="Human" parent="Isometric_Village" instance=ExtResource("12_g40di")]
+position = Vector2(153, 133)
+
+[node name="Human2" parent="Isometric_Village" instance=ExtResource("12_g40di")]
+position = Vector2(95, 188)
+
+[node name="Human3" parent="Isometric_Village" instance=ExtResource("12_g40di")]
+position = Vector2(153, 133)
+
+[node name="Human4" parent="Isometric_Village" instance=ExtResource("12_g40di")]
 position = Vector2(153, 133)
 
 [node name="Player" parent="Isometric_Village" instance=ExtResource("2")]

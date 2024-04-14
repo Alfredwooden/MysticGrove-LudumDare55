@@ -1,3 +1,5 @@
+#Human.gd
+
 extends CharacterBody2D
 
 @export var speed = 20
@@ -12,6 +14,7 @@ extends CharacterBody2D
 @onready var hurtBox = $HurtBox
 @onready var hitBox = $HitBox
 @onready var effects = $Effects
+@onready var healthDots = [$Control/Heart_One, $Control/Heart_One2, $Control/Heart_One3]
 
 var is_chasing = false
 var chase_target = null
@@ -32,10 +35,11 @@ func _ready():
 	changeStateTimer.start()
 	movingTimer.start()
 	effects.play("RESET")
+	updateHealthDots()
 
 func updateVelocity():
 	if is_chasing and is_instance_valid(chase_target):
-		motion = (chase_target.position - position).normalized() * speed
+		motion = (chase_target.position - position).normalized() * (speed * 1.25)  # Increase speed by 25% when chasing
 	else:
 		if walking:
 			if moving_vertical_horizontal == 1:
@@ -59,6 +63,7 @@ func updateVelocity():
 			motion = Vector2.ZERO
 	
 	velocity = motion
+
 
 func updateAnimation():
 	if is_chasing and is_instance_valid(chase_target):
@@ -131,28 +136,42 @@ func _on_HurtBox_area_entered(area):
 		enemyCollisions.append(area)
 
 func _on_HurtBox_area_exited(area):
-	enemyCollisions.erase(area)
+	if area in enemyCollisions:
+		enemyCollisions.erase(area)
 
 func hurtByEnemy(area):
 	if !isHurt:
-		takeDamage(1)
-		isHurt = true
-		knockback(area.get_parent().velocity)
-		effects.play("HurtBlink")
-		hurtTimer.start()
-		await hurtTimer.timeout
-		effects.play("RESET")
-		isHurt = false
+		if is_instance_valid(area) and is_instance_valid(area.get_parent()):
+			takeDamage(1)
+			isHurt = true
+			knockback(area.get_parent().velocity)
+			effects.play("HurtBlink")
+			hurtTimer.start()
+			await hurtTimer.timeout
+			effects.play("RESET")
+			isHurt = false
+		else:
+			enemyCollisions.erase(area)
+
+func knockback(enemyVelocity: Vector2):
+	if is_instance_valid(enemyVelocity):
+		var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
+		velocity = knockbackDirection
+		move_and_slide()
 
 func takeDamage(damage):
 	currentHealth -= damage
+	updateHealthDots()
 	if currentHealth <= 0:
 		die()
 
 func die():
 	queue_free()
 
-func knockback(enemyVelocity: Vector2):
-	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
-	velocity = knockbackDirection
-	move_and_slide()
+func updateHealthDots():
+	for i in range(maxHealth):
+		if i < currentHealth:
+			healthDots[i].frame = 1
+		else:
+			healthDots[i].frame = 0
+

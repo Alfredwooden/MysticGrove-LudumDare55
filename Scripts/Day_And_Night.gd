@@ -1,3 +1,4 @@
+#DayAndNight.gd
 extends StaticBody2D
 
 var state = "day" #Night
@@ -6,7 +7,6 @@ var change_state = false
 
 var length_of_day = 15 # sec
 var length_of_night = 8 # sec
-
 
 func _ready():
 	if state == "day":

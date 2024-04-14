@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://2l2clqggacmm"]
+[gd_scene load_steps=23 format=3 uid="uid://2l2clqggacmm"]
 
 [ext_resource type="Script" path="res://Scripts/Human.gd" id="1_aidq6"]
 [ext_resource type="Texture2D" uid="uid://vuh1vf57hseg" path="res://Assets/Entities.png" id="1_gptmq"]
+[ext_resource type="Texture2D" uid="uid://bl4iglcswogmo" path="res://Assets/UI.png" id="3_i2u5v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2m34f"]
 atlas = ExtResource("1_gptmq")
@@ -131,6 +132,28 @@ _data = {
 "RESET": SubResource("Animation_p43t6")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_poum1"]
+atlas = ExtResource("3_i2u5v")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tu8a"]
+atlas = ExtResource("3_i2u5v")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_13af2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_poum1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tu8a")
+}],
+"loop": true,
+"name": &"Health",
+"speed": 5.0
+}]
+
 [node name="Human" type="CharacterBody2D" groups=["Enemy"]]
 z_index = 1
 y_sort_enabled = true
@@ -158,7 +181,7 @@ shape = SubResource("CapsuleShape2D_c5dd5")
 [node name="HitBox" type="Area2D" parent="."]
 position = Vector2(0, -7)
 collision_layer = 16
-collision_mask = 12
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("CapsuleShape2D_nrkqm")
@@ -173,7 +196,7 @@ shape = SubResource("CircleShape2D_sobfu")
 
 [node name="HurtBox" type="Area2D" parent="."]
 position = Vector2(0, -7)
-collision_layer = 28
+collision_layer = 16
 collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
@@ -197,6 +220,28 @@ one_shot = true
 libraries = {
 "": SubResource("AnimationLibrary_iyx25")
 }
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -7.0
+offset_top = -17.0
+offset_right = 7.0
+
+[node name="Heart_One" type="AnimatedSprite2D" parent="Control"]
+position = Vector2(1, 0)
+sprite_frames = SubResource("SpriteFrames_13af2")
+animation = &"Health"
+
+[node name="Heart_One2" type="AnimatedSprite2D" parent="Control"]
+position = Vector2(7, 0)
+sprite_frames = SubResource("SpriteFrames_13af2")
+animation = &"Health"
+
+[node name="Heart_One3" type="AnimatedSprite2D" parent="Control"]
+position = Vector2(13, 0)
+sprite_frames = SubResource("SpriteFrames_13af2")
+animation = &"Health"
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
