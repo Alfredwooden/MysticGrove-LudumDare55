@@ -2,15 +2,15 @@
 
 [ext_resource type="Texture2D" uid="uid://bteq651d33c6s" path="res://Assets/Isometric_Tiles.png" id="1_hc5xe"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_38co5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvrbh"]
 atlas = ExtResource("1_hc5xe")
-region = Rect2(128, 192, 32, 32)
+region = Rect2(96, 176, 32, 44)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ad3gt"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_38co5")
+"texture": SubResource("AtlasTexture_lvrbh")
 }],
 "loop": true,
 "name": &"default",
@@ -22,5 +22,5 @@ z_index = 1
 y_sort_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -16)
+position = Vector2(16, -22)
 sprite_frames = SubResource("SpriteFrames_ad3gt")

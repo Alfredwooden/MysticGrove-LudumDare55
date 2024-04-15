@@ -72,12 +72,13 @@ radius = 16.0312
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_478eq")
+souls_per_click = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_4vs7i")
 animation = &"Clicking"
-frame_progress = 0.29656
+frame_progress = 0.553724
 
 [node name="ClickArea" type="Area2D" parent="."]
 
@@ -102,5 +103,4 @@ vframes = 8
 frame = 14
 
 [connection signal="input_event" from="ClickArea" to="." method="_on_ClickArea_input_event"]
-[connection signal="mouse_entered" from="ClickArea" to="." method="_on_click_area_mouse_entered"]
-[connection signal="mouse_exited" from="ClickArea" to="." method="_on_click_area_mouse_exited"]
+[connection signal="timeout" from="Autoclick" to="." method="_on_auto_click_timeout"]

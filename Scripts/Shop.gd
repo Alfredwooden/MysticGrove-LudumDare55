@@ -5,6 +5,8 @@ extends StaticBody2D
 @onready var ghostSoulpack = $External/Ghost_soulpack
 
 func _ready():
+	$AnimatedSprite2D.play("defaul")
+	$Seller_Sprite.play("default")
 	shopMenu.visible = false
 
 func _process(delta):

@@ -14,6 +14,7 @@ var isHurt: bool = false
 var enemyCollisions = []
 
 signal healthChanged
+signal hit_training_dummy
 
 var isometric_ratio = Vector2(1, 0.5)
 var motion = Vector2.ZERO
@@ -59,17 +60,19 @@ func handleCollision():
 		var collider = collision.get_collider()
 
 func hurtByEnemy(area):
-	pass
 	currentHealth -= 1
-	if currentHealth < 0: currentHealth = maxHealth
 	healthChanged.emit(currentHealth)
-	isHurt = true
-	knockback(area.get_parent().velocity)
-	effects.play("HurtBlink")
-	hurtTimer.start()
-	await hurtTimer.timeout
-	effects.play("RESET")
-	isHurt = false
+	
+	if currentHealth <= 0:
+		die()
+	else:
+		isHurt = true
+		knockback(area.get_parent().velocity)
+		effects.play("HurtBlink")
+		hurtTimer.start()
+		await hurtTimer.timeout
+		effects.play("RESET")
+		isHurt = false
 
 func _on_area_2d_area_entered(area):
 	if area.name == "HitBox":
@@ -82,6 +85,14 @@ func knockback(enemyVelocity: Vector2):
 	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
 	velocity = knockbackDirection
 	move_and_slide()
+
+func die():
+	# Player dies
+	queue_free()  # Remove the player from the scene
+	restart_game()
+
+func restart_game():
+	get_tree().reload_current_scene()
 
 func player():
 	pass

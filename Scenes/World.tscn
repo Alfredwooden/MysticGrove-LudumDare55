@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://2n4a0bfcydq8"]
+[gd_scene load_steps=11 format=3 uid="uid://2n4a0bfcydq8"]
 
 [ext_resource type="PackedScene" uid="uid://ct1tu3wgxxivw" path="res://Scenes/Characters/Player.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://baiiyg2egvexe" path="res://Scenes/UI/ui.tscn" id="2_ur70f"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/World.gd" id="7"]
 [ext_resource type="PackedScene" uid="uid://dxa56fu4v1j81" path="res://Scenes/Overworld/Shop.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://bfj4fce8yked1" path="res://Scenes/Extras/Day_And_Night.tscn" id="9_8c8co"]
+[ext_resource type="PackedScene" uid="uid://b4g4hvi7gc1ab" path="res://Scenes/Overworld/training_dummy.tscn" id="10_7x5xk"]
 [ext_resource type="PackedScene" uid="uid://5mcvsglxljxu" path="res://Scenes/Overworld/Isometric_Village.tscn" id="10_74lug"]
 [ext_resource type="PackedScene" uid="uid://yb8ckkxwpdgq" path="res://Scenes/Overworld/Human_spawn_point.tscn" id="10_pdb5r"]
 [ext_resource type="PackedScene" uid="uid://vufagd1ankfg" path="res://Scenes/Overworld/summon_spawn_point.tscn" id="10_q18ae"]
@@ -21,12 +22,13 @@ script = ExtResource("7")
 position = Vector2(-12, -25)
 
 [node name="Day_And_Night" parent="Isometric_Village" instance=ExtResource("9_8c8co")]
+visible = false
 position = Vector2(24, 35)
-length_of_day = 4
-length_of_night = 2
+length_of_day = 10
+length_of_night = 1
 
 [node name="Player" parent="Isometric_Village" instance=ExtResource("2")]
-position = Vector2(84, 61)
+position = Vector2(125, 102)
 speed = 25
 
 [node name="SummoningZones" type="Node" parent="Isometric_Village"]
@@ -46,12 +48,15 @@ position = Vector2(212, 101)
 [node name="Spawns" type="Node" parent="Isometric_Village"]
 
 [node name="HumanSpawnPoint" parent="Isometric_Village/Spawns" instance=ExtResource("10_pdb5r")]
-position = Vector2(324, 221)
+position = Vector2(372, 169)
 
 [node name="SummonSpawnPoint" parent="Isometric_Village/Spawns" instance=ExtResource("10_q18ae")]
-position = Vector2(228, 189)
+position = Vector2(324, 145)
 
 [node name="Overworld" type="Node" parent="Isometric_Village"]
 
 [node name="Shop" parent="Isometric_Village/Overworld" instance=ExtResource("9")]
 position = Vector2(245, 100)
+
+[node name="TrainingDummy" parent="Isometric_Village" instance=ExtResource("10_7x5xk")]
+position = Vector2(-16, 54)

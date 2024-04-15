@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dxa56fu4v1j81"]
+[gd_scene load_steps=16 format=3 uid="uid://dxa56fu4v1j81"]
 
 [ext_resource type="Texture2D" uid="uid://bubbaqlvdvs35" path="res://Assets/Character.png" id="1"]
 [ext_resource type="Script" path="res://Scripts/Shop.gd" id="3"]
@@ -37,6 +37,21 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kl7yf"]
+atlas = ExtResource("3_1ctmm")
+region = Rect2(128, 108, 32, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gse04"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kl7yf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="CircleShape2D" id="8"]
 radius = 6.0
 
@@ -53,12 +68,9 @@ script = ExtResource("3")
 position = Vector2(2, -21)
 sprite_frames = SubResource("6")
 
-[node name="Shop_sprite" type="Sprite2D" parent="."]
-position = Vector2(-1, -15)
-texture = ExtResource("3_1ctmm")
-hframes = 6
-vframes = 6
-frame = 18
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -17)
+sprite_frames = SubResource("SpriteFrames_gse04")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-2, -15)

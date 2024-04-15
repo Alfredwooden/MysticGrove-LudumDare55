@@ -5,7 +5,7 @@ var soul_selected = 1
 
 var num_of_skulls = 0
 var num_of_ghosts = 0
-var num_of_souls = 350
+var num_of_souls = 500
 
 var ghost_souls = 0
 var skull_souls = 0
