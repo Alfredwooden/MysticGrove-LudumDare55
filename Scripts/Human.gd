@@ -1,11 +1,10 @@
 #Human.gd
-
 extends CharacterBody2D
 
 @export var speed = 20
 @export var limit = 0.5
 @export var maxHealth = 3
-@export var knockbackPower: int = 500
+@export var knockbackPower: int = 1
 
 @onready var animations = $AnimatedSprite2D
 @onready var changeStateTimer = $Timers/ChangeState
@@ -39,7 +38,7 @@ func _ready():
 
 func updateVelocity():
 	if is_chasing and is_instance_valid(chase_target):
-		motion = (chase_target.position - position).normalized() * (speed * 1.25)  # Increase speed by 25% when chasing
+		motion = (chase_target.position - position).normalized() * (speed * 1.25)
 	else:
 		if walking:
 			if moving_vertical_horizontal == 1:

@@ -1,52 +1,53 @@
-[gd_scene load_steps=23 format=3 uid="uid://2l2clqggacmm"]
+[gd_scene load_steps=24 format=3 uid="uid://bwx8r72rlijnl"]
 
-[ext_resource type="Script" path="res://Scripts/Human.gd" id="1_aidq6"]
-[ext_resource type="Texture2D" uid="uid://vuh1vf57hseg" path="res://Assets/Entities.png" id="1_gptmq"]
-[ext_resource type="Texture2D" uid="uid://bl4iglcswogmo" path="res://Assets/UI.png" id="3_i2u5v"]
+[ext_resource type="Texture2D" uid="uid://vuh1vf57hseg" path="res://Assets/Entities.png" id="1"]
+[ext_resource type="Script" path="res://Scripts/Skeleton.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bl4iglcswogmo" path="res://Assets/UI.png" id="3_mv164"]
+[ext_resource type="PackedScene" uid="uid://2l2clqggacmm" path="res://Scenes/Characters/Human.tscn" id="4_mkfpe"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2m34f"]
-atlas = ExtResource("1_gptmq")
-region = Rect2(48, 80, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0oga"]
+atlas = ExtResource("1")
+region = Rect2(48, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x4xpl"]
-atlas = ExtResource("1_gptmq")
-region = Rect2(64, 80, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jnmj"]
+atlas = ExtResource("1")
+region = Rect2(64, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ot780"]
-atlas = ExtResource("1_gptmq")
-region = Rect2(80, 80, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_valpw"]
+atlas = ExtResource("1")
+region = Rect2(80, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bwv3l"]
-atlas = ExtResource("1_gptmq")
-region = Rect2(0, 64, 16, 16)
+[sub_resource type="AtlasTexture" id="5"]
+atlas = ExtResource("1")
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gvwfo"]
-atlas = ExtResource("1_gptmq")
-region = Rect2(16, 64, 16, 16)
+[sub_resource type="AtlasTexture" id="6"]
+atlas = ExtResource("1")
+region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1awrs"]
-atlas = ExtResource("1_gptmq")
-region = Rect2(48, 64, 16, 16)
+[sub_resource type="AtlasTexture" id="1"]
+atlas = ExtResource("1")
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gsntl"]
-atlas = ExtResource("1_gptmq")
-region = Rect2(64, 64, 16, 16)
+[sub_resource type="AtlasTexture" id="2"]
+atlas = ExtResource("1")
+region = Rect2(48, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hdmhb"]
-atlas = ExtResource("1_gptmq")
-region = Rect2(80, 64, 16, 16)
+[sub_resource type="AtlasTexture" id="3"]
+atlas = ExtResource("1")
+region = Rect2(64, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_pi26r"]
+[sub_resource type="SpriteFrames" id="4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2m34f")
+"texture": SubResource("AtlasTexture_k0oga")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x4xpl")
+"texture": SubResource("AtlasTexture_2jnmj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ot780")
+"texture": SubResource("AtlasTexture_valpw")
 }],
 "loop": true,
 "name": &"Chasing",
@@ -54,10 +55,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bwv3l")
+"texture": SubResource("5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gvwfo")
+"texture": SubResource("6")
 }],
 "loop": true,
 "name": &"Idle",
@@ -65,31 +66,31 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1awrs")
+"texture": SubResource("1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gsntl")
+"texture": SubResource("2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hdmhb")
+"texture": SubResource("3")
 }],
 "loop": true,
 "name": &"Walk",
 "speed": 4.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c5dd5"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jiovp"]
 radius = 4.0
 height = 14.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nrkqm"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ey5vf"]
 radius = 5.0
 height = 14.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_sobfu"]
-radius = 33.0606
+[sub_resource type="CircleShape2D" id="CircleShape2D_5prcs"]
+radius = 32.3883
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4tlbm"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s7x0s"]
 radius = 5.0
 height = 14.0
 
@@ -133,14 +134,14 @@ _data = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_poum1"]
-atlas = ExtResource("3_i2u5v")
+atlas = ExtResource("3_mv164")
 region = Rect2(96, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4tu8a"]
-atlas = ExtResource("3_i2u5v")
+atlas = ExtResource("3_mv164")
 region = Rect2(112, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_13af2"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_j26o8"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -154,17 +155,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Human" type="CharacterBody2D" groups=["Enemy"]]
+[node name="Skeleton" type="CharacterBody2D" groups=["Summon"]]
 z_index = 1
 y_sort_enabled = true
-collision_layer = 16
-script = ExtResource("1_aidq6")
+position = Vector2(57, 36)
+collision_layer = 8
+collision_mask = 17
+script = ExtResource("2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 clip_children = 2
 position = Vector2(0, -7)
-sprite_frames = SubResource("SpriteFrames_pi26r")
-animation = &"Idle"
+sprite_frames = SubResource("4")
+animation = &"Walk"
 
 [node name="ColorRect" type="ColorRect" parent="AnimatedSprite2D"]
 offset_left = -20.0
@@ -175,40 +178,38 @@ color = Color(0.45098, 0.0901961, 0.176471, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7)
-shape = SubResource("CapsuleShape2D_c5dd5")
+shape = SubResource("CapsuleShape2D_jiovp")
 
 [node name="HitBox" type="Area2D" parent="."]
 position = Vector2(0, -7)
-collision_layer = 16
-collision_mask = 12
+collision_layer = 8
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-shape = SubResource("CapsuleShape2D_nrkqm")
+shape = SubResource("CapsuleShape2D_ey5vf")
 
 [node name="DetectionArea" type="Area2D" parent="."]
-collision_layer = 32
-collision_mask = 12
+collision_layer = 8
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 position = Vector2(0, -7)
-shape = SubResource("CircleShape2D_sobfu")
+shape = SubResource("CircleShape2D_5prcs")
 
 [node name="HurtBox" type="Area2D" parent="."]
 position = Vector2(0, -7)
-collision_layer = 16
-collision_mask = 8
+collision_layer = 8
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-shape = SubResource("CapsuleShape2D_4tlbm")
+shape = SubResource("CapsuleShape2D_s7x0s")
 
 [node name="Timers" type="Node" parent="."]
 
 [node name="ChangeState" type="Timer" parent="Timers"]
-wait_time = 0.5
 autostart = true
 
 [node name="Moving" type="Timer" parent="Timers"]
-wait_time = 0.5
 autostart = true
 
 [node name="HurtTimer" type="Timer" parent="Timers"]
@@ -229,21 +230,28 @@ offset_right = 7.0
 
 [node name="Heart_One" type="AnimatedSprite2D" parent="Control"]
 position = Vector2(1, 0)
-sprite_frames = SubResource("SpriteFrames_13af2")
+sprite_frames = SubResource("SpriteFrames_j26o8")
 animation = &"Health"
+frame = 1
 
 [node name="Heart_One2" type="AnimatedSprite2D" parent="Control"]
 position = Vector2(7, 0)
-sprite_frames = SubResource("SpriteFrames_13af2")
+sprite_frames = SubResource("SpriteFrames_j26o8")
 animation = &"Health"
+frame = 1
 
 [node name="Heart_One3" type="AnimatedSprite2D" parent="Control"]
 position = Vector2(13, 0)
-sprite_frames = SubResource("SpriteFrames_13af2")
+sprite_frames = SubResource("SpriteFrames_j26o8")
 animation = &"Health"
+frame = 1
+
+[node name="Human" parent="." instance=ExtResource("4_mkfpe")]
+position = Vector2(36, 3)
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
+[connection signal="area_exited" from="HurtBox" to="." method="_on_HurtBox_area_exited"]
 [connection signal="timeout" from="Timers/ChangeState" to="." method="_on_ChangeStateTimer_timeout"]
-[connection signal="timeout" from="Timers/Moving" to="." method="_on_Moving_timeout"]
+[connection signal="timeout" from="Timers/Moving" to="." method="_on_WalkingTimer_timeout"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://bwx8r72rlijnl"]
+[gd_scene load_steps=24 format=3 uid="uid://bwx8r72rlijnl"]
 
 [ext_resource type="Texture2D" uid="uid://vuh1vf57hseg" path="res://Assets/Entities.png" id="1"]
 [ext_resource type="Script" path="res://Scripts/Skeleton.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://bl4iglcswogmo" path="res://Assets/UI.png" id="3_mv164"]
+[ext_resource type="PackedScene" uid="uid://2l2clqggacmm" path="res://Scenes/Characters/Human.tscn" id="4_mkfpe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0oga"]
 atlas = ExtResource("1")
@@ -188,7 +189,8 @@ collision_mask = 16
 shape = SubResource("CapsuleShape2D_ey5vf")
 
 [node name="DetectionArea" type="Area2D" parent="."]
-collision_layer = 8
+position = Vector2(0, -7)
+collision_layer = 32
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
@@ -244,6 +246,9 @@ position = Vector2(13, 0)
 sprite_frames = SubResource("SpriteFrames_j26o8")
 animation = &"Health"
 frame = 1
+
+[node name="Human" parent="." instance=ExtResource("4_mkfpe")]
+position = Vector2(36, 3)
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

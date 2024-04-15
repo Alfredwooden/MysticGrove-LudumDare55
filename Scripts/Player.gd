@@ -87,8 +87,7 @@ func knockback(enemyVelocity: Vector2):
 	move_and_slide()
 
 func die():
-	# Player dies
-	queue_free()  # Remove the player from the scene
+	queue_free()
 	restart_game()
 
 func restart_game():
