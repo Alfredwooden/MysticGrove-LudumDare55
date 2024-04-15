@@ -7,7 +7,7 @@ enum layers {
 }
 
 const dirt_block_atlas_pos = Vector2i(0,0)
-const water_block_atlas_pos = Vector2i(4,0)
+const water_block_atlas_pos = Vector2i(5,1)
 const boundary_atlas_pos = Vector2i(3,0)
 
 const main_source = 0
@@ -26,9 +26,10 @@ func place_boundaries():
 	for spot in used:
 		for offset in offsets:
 			var current_spot = spot + offset
+
 			# This spot is empty
 			if get_cell_source_id(layers.level0, current_spot) == -1:
-				set_cell(layers.level0, current_spot, main_source,boundary_atlas_pos)
+				set_cell(layers.level0, current_spot, main_source,water_block_atlas_pos)
 				
 
 func place_platform():

@@ -2,18 +2,18 @@
 extends StaticBody2D
 
 @export var souls_per_click: int = 1
-@export var clicks_per_second: float = 2.0  # You can adjust this value
+@export var clicks_per_second: float = 2.0
 
-@onready var animated_sprite = $AnimatedSprite2D
+@onready var animated_sprite = $TrainingDummySprite
 @onready var click_area = $ClickArea
-@onready var soul_sprite = $Control/Sprite2D
+@onready var soul_sprite = $SoulInterface/SoulGUI
 
 var can_click: bool = true
 var click_timer: Timer
 
 func _ready():
 	animated_sprite.play("Idle")
-	soul_sprite.visible = false  # Hide the soul sprite initially
+	soul_sprite.visible = false
 	click_timer = Timer.new()
 	click_timer.wait_time = 1.0 / clicks_per_second
 	click_timer.one_shot = true

@@ -159,6 +159,8 @@ z_index = 1
 y_sort_enabled = true
 collision_layer = 16
 script = ExtResource("1_aidq6")
+speed = 15.0
+chase_speed_multiplier = 1.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 clip_children = 2
@@ -186,7 +188,7 @@ collision_mask = 12
 shape = SubResource("CapsuleShape2D_nrkqm")
 
 [node name="DetectionArea" type="Area2D" parent="."]
-collision_layer = 32
+collision_layer = 16
 collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
@@ -244,6 +246,7 @@ animation = &"Health"
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
-[connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
-[connection signal="timeout" from="Timers/ChangeState" to="." method="_on_ChangeStateTimer_timeout"]
-[connection signal="timeout" from="Timers/Moving" to="." method="_on_Moving_timeout"]
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="area_exited" from="HurtBox" to="." method="_on_hurt_box_area_exited"]
+[connection signal="timeout" from="Timers/ChangeState" to="." method="_on_change_state_timer_timeout"]
+[connection signal="timeout" from="Timers/Moving" to="." method="_on_moving_timer_timeout"]

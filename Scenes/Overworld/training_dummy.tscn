@@ -4,97 +4,93 @@
 [ext_resource type="Texture2D" uid="uid://bteq651d33c6s" path="res://Assets/Isometric_Tiles.png" id="2_04jg3"]
 [ext_resource type="Texture2D" uid="uid://bl4iglcswogmo" path="res://Assets/UI.png" id="3_3s7fv"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7vemi"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_13i6r"]
 atlas = ExtResource("2_04jg3")
-region = Rect2(192, 64, 32, 32)
+region = Rect2(416, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eb0to"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jc5jy"]
 atlas = ExtResource("2_04jg3")
-region = Rect2(224, 64, 32, 32)
+region = Rect2(448, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s3m0h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7tva"]
 atlas = ExtResource("2_04jg3")
-region = Rect2(256, 64, 32, 32)
+region = Rect2(480, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_aqkri"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxjl8"]
 atlas = ExtResource("2_04jg3")
-region = Rect2(192, 0, 32, 32)
+region = Rect2(320, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ire3m"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3m0f"]
 atlas = ExtResource("2_04jg3")
-region = Rect2(224, 0, 32, 32)
+region = Rect2(352, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uecg0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rq52y"]
 atlas = ExtResource("2_04jg3")
-region = Rect2(256, 0, 32, 32)
+region = Rect2(384, 32, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_4vs7i"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_efwlb"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7vemi")
+"texture": SubResource("AtlasTexture_13i6r")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eb0to")
+"texture": SubResource("AtlasTexture_jc5jy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s3m0h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eb0to")
+"texture": SubResource("AtlasTexture_w7tva")
 }],
 "loop": true,
 "name": &"Clicking",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_aqkri")
+"texture": SubResource("AtlasTexture_nxjl8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ire3m")
+"texture": SubResource("AtlasTexture_e3m0f")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uecg0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ire3m")
+"texture": SubResource("AtlasTexture_rq52y")
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 4.0
+"speed": 2.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_no82p"]
-radius = 16.0312
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_romic"]
+height = 28.0
 
 [node name="TrainingDummy" type="StaticBody2D"]
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_478eq")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -12)
-sprite_frames = SubResource("SpriteFrames_4vs7i")
+[node name="TrainingDummySprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -11)
+sprite_frames = SubResource("SpriteFrames_efwlb")
 animation = &"Clicking"
-frame_progress = 0.29656
+centered = false
+offset = Vector2(-16, -21)
 
 [node name="ClickArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea"]
-position = Vector2(0, -11)
-shape = SubResource("CircleShape2D_no82p")
+position = Vector2(0, -16)
+shape = SubResource("CapsuleShape2D_romic")
 
 [node name="Autoclick" type="Timer" parent="."]
 
-[node name="Control" type="Control" parent="."]
+[node name="SoulInterface" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -6.0
-offset_top = -31.0
+offset_top = -35.0
 offset_right = 6.0
+offset_bottom = -4.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Control"]
+[node name="SoulGUI" type="Sprite2D" parent="SoulInterface"]
 position = Vector2(12, 3)
 texture = ExtResource("3_3s7fv")
 hframes = 8

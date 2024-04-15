@@ -1,9 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://bwx8r72rlijnl"]
+[gd_scene load_steps=23 format=3 uid="uid://bwx8r72rlijnl"]
 
 [ext_resource type="Texture2D" uid="uid://vuh1vf57hseg" path="res://Assets/Entities.png" id="1"]
 [ext_resource type="Script" path="res://Scripts/Skeleton.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://bl4iglcswogmo" path="res://Assets/UI.png" id="3_mv164"]
-[ext_resource type="PackedScene" uid="uid://2l2clqggacmm" path="res://Scenes/Characters/Human.tscn" id="4_mkfpe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0oga"]
 atlas = ExtResource("1")
@@ -158,10 +157,11 @@ animations = [{
 [node name="Skeleton" type="CharacterBody2D" groups=["Summon"]]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(57, 36)
 collision_layer = 8
 collision_mask = 17
 script = ExtResource("2")
+speed = 15.0
+chase_speed_multiplier = 2.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 clip_children = 2
@@ -190,7 +190,7 @@ shape = SubResource("CapsuleShape2D_ey5vf")
 
 [node name="DetectionArea" type="Area2D" parent="."]
 position = Vector2(0, -7)
-collision_layer = 32
+collision_layer = 8
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
@@ -247,12 +247,9 @@ sprite_frames = SubResource("SpriteFrames_j26o8")
 animation = &"Health"
 frame = 1
 
-[node name="Human" parent="." instance=ExtResource("4_mkfpe")]
-position = Vector2(36, 3)
-
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
-[connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
-[connection signal="area_exited" from="HurtBox" to="." method="_on_HurtBox_area_exited"]
-[connection signal="timeout" from="Timers/ChangeState" to="." method="_on_ChangeStateTimer_timeout"]
-[connection signal="timeout" from="Timers/Moving" to="." method="_on_WalkingTimer_timeout"]
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="area_exited" from="HurtBox" to="." method="_on_hurt_box_area_exited"]
+[connection signal="timeout" from="Timers/ChangeState" to="." method="_on_change_state_timer_timeout"]
+[connection signal="timeout" from="Timers/Moving" to="." method="_on_moving_timer_timeout"]
