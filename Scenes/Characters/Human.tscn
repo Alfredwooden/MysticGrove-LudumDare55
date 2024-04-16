@@ -78,9 +78,9 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c5dd5"]
-radius = 4.0
-height = 14.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dvfqw"]
+radius = 2.0
+height = 6.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nrkqm"]
 radius = 5.0
@@ -161,11 +161,11 @@ collision_layer = 16
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_aidq6")
-speed = 15.0
+speed = 25.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 clip_children = 2
-position = Vector2(0, -7)
+position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_pi26r")
 animation = &"Idle"
 
@@ -177,11 +177,12 @@ offset_bottom = 20.0
 color = Color(0.45098, 0.0901961, 0.176471, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -7)
-shape = SubResource("CapsuleShape2D_c5dd5")
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_dvfqw")
 
 [node name="HitBox" type="Area2D" parent="."]
-position = Vector2(0, -7)
+position = Vector2(0, -6)
 collision_layer = 16
 collision_mask = 12
 
@@ -189,6 +190,7 @@ collision_mask = 12
 shape = SubResource("CapsuleShape2D_nrkqm")
 
 [node name="DetectionArea" type="Area2D" parent="."]
+position = Vector2(0, 1)
 collision_layer = 16
 collision_mask = 12
 
@@ -197,7 +199,7 @@ position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_sobfu")
 
 [node name="HurtBox" type="Area2D" parent="."]
-position = Vector2(0, -7)
+position = Vector2(0, -6)
 collision_layer = 16
 collision_mask = 8
 
@@ -227,8 +229,9 @@ libraries = {
 layout_mode = 3
 anchors_preset = 0
 offset_left = -7.0
-offset_top = -17.0
+offset_top = -16.0
 offset_right = 7.0
+offset_bottom = 1.0
 
 [node name="Heart_One" type="AnimatedSprite2D" parent="Control"]
 position = Vector2(1, 0)
@@ -251,6 +254,10 @@ debug_enabled = true
 
 [node name="NavigationTimer" type="Timer" parent="."]
 wait_time = 0.1
+autostart = true
+
+[node name="ChaseTimer" type="Timer" parent="."]
+wait_time = 0.2
 autostart = true
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

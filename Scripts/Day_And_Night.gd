@@ -52,5 +52,5 @@ func spawn_day_entities():
 	var world_scene = get_node("/root/World")
 
 	world_scene.spawn_human(num_humans)
-	world_scene.spawn_skeleton(5)
+	world_scene.spawn_skeleton(1)
 

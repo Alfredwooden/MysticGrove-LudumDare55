@@ -9,47 +9,44 @@ extends CharacterBody2D
 @onready var currentHealth: int = maxHealth
 @onready var effects = $Effects
 @onready var hurtTimer = $HurtTimer
+@onready var animatedSprite = $AnimatedSprite2D
 
 var isHurt: bool = false
 var enemyCollisions = []
+var isometric_ratio = Vector2(1, 0.5)
+var motion = Vector2.ZERO
 
 signal healthChanged
 signal hit_training_dummy
-
-var isometric_ratio = Vector2(1, 0.5)
-var motion = Vector2.ZERO
 
 func _ready():
 	effects.play("RESET")
 
 func _physics_process(delta):
+	motion = Vector2.ZERO
+
 	if Input.is_action_pressed("ui_right"):
-		$AnimatedSprite2D.play("Walk")
-		$AnimatedSprite2D.flip_h = true
 		motion = Vector2(speed, speed * isometric_ratio.y)
+		animatedSprite.flip_h = true
 	elif Input.is_action_pressed("ui_left"):
-		$AnimatedSprite2D.play("Walk")
-		$AnimatedSprite2D.flip_h = false
 		motion = Vector2(-speed, -speed * isometric_ratio.y)
+		animatedSprite.flip_h = false
 	elif Input.is_action_pressed("ui_down"):
-		$AnimatedSprite2D.play("Walk")
 		motion = Vector2(-speed, speed * isometric_ratio.y)
 	elif Input.is_action_pressed("ui_up"):
-		$AnimatedSprite2D.play("Walk")
 		motion = Vector2(speed, -speed * isometric_ratio.y)
+
+	if motion != Vector2.ZERO:
+		animatedSprite.play("Walk")
 	else:
-		$AnimatedSprite2D.play("Idle")
-		motion = Vector2.ZERO
-	
-	if self.position.x < 15:
-		Global.camera_pos = 2
-	else:
-		Global.camera_pos = 1
-	
+		animatedSprite.play("Idle")
+
+	Global.camera_pos = 2 if self.position.x < 15 else 1
+
 	set_velocity(motion)
 	move_and_slide()
 	handleCollision()
-	
+
 	if !isHurt:
 		for enemyArea in enemyCollisions:
 			hurtByEnemy(enemyArea)
@@ -62,7 +59,6 @@ func handleCollision():
 func hurtByEnemy(area):
 	currentHealth -= 1
 	healthChanged.emit(currentHealth)
-	
 	if currentHealth <= 0:
 		die()
 	else:
@@ -87,17 +83,10 @@ func knockback(enemyVelocity: Vector2):
 	move_and_slide()
 
 func die():
+	animatedSprite.play("Die")
+	await animatedSprite.animation_finished
 	queue_free()
 	restart_game()
 
 func restart_game():
 	get_tree().reload_current_scene()
-
-func player():
-	pass
-
-func player_sell_method():
-	pass
-
-func player_shop_method():
-	pass

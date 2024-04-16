@@ -78,9 +78,9 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jiovp"]
-radius = 4.0
-height = 14.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xuuvg"]
+radius = 2.0
+height = 6.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ey5vf"]
 radius = 5.0
@@ -162,11 +162,11 @@ collision_mask = 17
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("2")
-speed = 15.0
+speed = 25.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 clip_children = 2
-position = Vector2(0, -7)
+position = Vector2(0, -6)
 sprite_frames = SubResource("4")
 animation = &"Walk"
 
@@ -178,11 +178,12 @@ offset_bottom = 20.0
 color = Color(0.45098, 0.0901961, 0.176471, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -7)
-shape = SubResource("CapsuleShape2D_jiovp")
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_xuuvg")
 
 [node name="HitBox" type="Area2D" parent="."]
-position = Vector2(0, -7)
+position = Vector2(0, -6)
 collision_layer = 8
 collision_mask = 16
 
@@ -190,7 +191,7 @@ collision_mask = 16
 shape = SubResource("CapsuleShape2D_ey5vf")
 
 [node name="DetectionArea" type="Area2D" parent="."]
-position = Vector2(0, -7)
+position = Vector2(0, -6)
 collision_layer = 8
 collision_mask = 16
 
@@ -199,7 +200,7 @@ position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_5prcs")
 
 [node name="HurtBox" type="Area2D" parent="."]
-position = Vector2(0, -7)
+position = Vector2(0, -6)
 collision_layer = 8
 collision_mask = 16
 
@@ -227,8 +228,9 @@ libraries = {
 layout_mode = 3
 anchors_preset = 0
 offset_left = -7.0
-offset_top = -17.0
+offset_top = -16.0
 offset_right = 7.0
+offset_bottom = 1.0
 
 [node name="Heart_One" type="AnimatedSprite2D" parent="Control"]
 position = Vector2(1, 0)
