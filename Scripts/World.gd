@@ -23,10 +23,6 @@ func _ready():
 	player.healthChanged.connect(heartContainer.updateHearts)
 	Global.enemy_spawn_point = $Isometric_Village/HumanSpawnPoint
 	Global.summon_spawn_point = $Isometric_Village/SummonSpawnPoint
-	
-	#spawn_human(5)  # Spawn 5 humans
-	#spawn_skeleton(3)  # Spawn 3 skeletons
-
 
 func _physics_process(delta):
 	$UI/Control/MarginContainer/Souls/SoulsContainer/Souls_GUI/SoulsLabel.text = "= " + str(Global.get_soul_coins())

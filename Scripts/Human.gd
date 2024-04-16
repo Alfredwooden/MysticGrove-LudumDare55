@@ -1,43 +1,31 @@
 extends CharacterBody2D
 
 @export var speed: float = 20.0
-@export var chase_speed_multiplier: float = 1.25
 @export var max_health: int = 3
 @export var knockback_power: int = 500
-@export var idle_wait_time_range: Vector2 = Vector2(1, 5)
-@export var walking_wait_time_range: Vector2 = Vector2(2, 6)
-@export var moving_wait_time_range: Vector2 = Vector2(1, 4)
+@export var player: Node2D
 
 @onready var animations = $AnimatedSprite2D
-@onready var change_state_timer = $Timers/ChangeState
-@onready var moving_timer = $Timers/Moving
 @onready var hurt_timer = $Timers/HurtTimer
 @onready var hurt_box = $HurtBox
 @onready var hit_box = $HitBox
 @onready var effects = $Effects
 @onready var health_dots = [$Control/Heart_One, $Control/Heart_One2, $Control/Heart_One3]
+@onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 
-var chase_target = null
 var current_health: int
 var is_hurt: bool = false
 var enemy_collisions = []
 
-var is_idle: bool = false
-var is_walking: bool = true
-var velocity_direction: Vector2 = Vector2.RIGHT
-
 enum MovementState {
 	IDLE,
-	WALKING,
 	CHASING
 }
 
-var current_movement_state = MovementState.WALKING
+var current_movement_state = MovementState.IDLE
 
 func _ready():
 	current_health = max_health
-	change_state_timer.start()
-	moving_timer.start()
 	effects.play("RESET")
 	update_health_dots()
 
@@ -54,51 +42,29 @@ func update_velocity():
 	match current_movement_state:
 		MovementState.IDLE:
 			velocity = Vector2.ZERO
-		MovementState.WALKING:
-			velocity = velocity_direction * speed
 		MovementState.CHASING:
-			if is_instance_valid(chase_target):
-				var direction = (chase_target.position - position).normalized()
-				velocity = direction * (speed * chase_speed_multiplier)
+			if is_instance_valid(player):
+				nav_agent.target_position = player.global_position
+				var direction = to_local(nav_agent.get_next_path_position()).normalized()
+				velocity = direction * speed
 			else:
-				current_movement_state = MovementState.WALKING
+				current_movement_state = MovementState.IDLE
 
 func update_animation():
 	match current_movement_state:
 		MovementState.IDLE:
 			animations.play("Idle")
-		MovementState.WALKING:
-			animations.play("Walk")
-			animations.flip_h = velocity_direction.x < 0
 		MovementState.CHASING:
 			animations.play("Chasing")
+			animations.flip_h = velocity.x < 0
 
 func _on_detection_area_body_entered(body):
 	if body.is_in_group("Player") or body.is_in_group("Summon"):
-		chase_target = body
 		current_movement_state = MovementState.CHASING
 
 func _on_detection_area_body_exited(body):
-	if body == chase_target:
-		chase_target = null
-		current_movement_state = MovementState.WALKING
-
-func _on_change_state_timer_timeout():
-	match current_movement_state:
-		MovementState.IDLE:
-			current_movement_state = MovementState.WALKING
-			change_state_timer.wait_time = randi_range(walking_wait_time_range.x, walking_wait_time_range.y)
-		MovementState.WALKING:
-			current_movement_state = MovementState.IDLE
-			change_state_timer.wait_time = randi_range(idle_wait_time_range.x, idle_wait_time_range.y)
-	change_state_timer.start()
-
-func _on_moving_timer_timeout():
-	if current_movement_state == MovementState.WALKING:
-		var random_direction = Vector2(randi_range(-1, 1), randi_range(-1, 1)).normalized()
-		velocity_direction = random_direction if random_direction != Vector2.ZERO else Vector2.RIGHT
-	moving_timer.wait_time = randi_range(moving_wait_time_range.x, moving_wait_time_range.y)
-	moving_timer.start()
+	if body.is_in_group("Player") or body.is_in_group("Summon"):
+		current_movement_state = MovementState.IDLE
 
 func _on_hurt_box_area_entered(area):
 	if (area.name == "HitBox" and area.get_parent().is_in_group("Summon")) or area.get_parent().is_in_group("Player"):
@@ -140,6 +106,3 @@ func die():
 func update_health_dots():
 	for i in range(max_health):
 		health_dots[i].frame = 1 if i < current_health else 0
-
-func randi_range(min_value: float, max_value: float) -> float:
-	return min_value + randf() * (max_value - min_value)

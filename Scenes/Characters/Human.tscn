@@ -158,9 +158,10 @@ animations = [{
 z_index = 5
 y_sort_enabled = true
 collision_layer = 16
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_aidq6")
 speed = 15.0
-chase_speed_multiplier = 1.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 clip_children = 2
@@ -244,9 +245,17 @@ position = Vector2(13, 0)
 sprite_frames = SubResource("SpriteFrames_13af2")
 animation = &"Health"
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="NavigationTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_exited" from="HurtBox" to="." method="_on_hurt_box_area_exited"]
 [connection signal="timeout" from="Timers/ChangeState" to="." method="_on_change_state_timer_timeout"]
 [connection signal="timeout" from="Timers/Moving" to="." method="_on_moving_timer_timeout"]
+[connection signal="timeout" from="NavigationTimer" to="." method="_on_navigation_timer_timeout"]
