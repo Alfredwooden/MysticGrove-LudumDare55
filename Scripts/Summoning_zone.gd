@@ -8,7 +8,7 @@ var soul_growing = false
 var soul_grown = false
 
 func _ready():
-	$Summoning_circle.play("Summoning")
+	$Summoning_circle.play("Growing")
 	soul_sprite.visible = false
 	if not soul_growing:
 		$Soul/SoulArrow.play("default")

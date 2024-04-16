@@ -87,7 +87,7 @@ radius = 5.0
 height = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sobfu"]
-radius = 139.014
+radius = 2265.11
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4tlbm"]
 radius = 5.0
@@ -246,6 +246,7 @@ sprite_frames = SubResource("SpriteFrames_13af2")
 animation = &"Health"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
 debug_enabled = true
 
 [node name="NavigationTimer" type="Timer" parent="."]

@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var max_health: int = 3
 @export var knockback_power: int = 500
 @export var player: Node2D
+@export var skeletons: Node2D
 
 @onready var animations = $AnimatedSprite2D
 @onready var hurt_timer = $Timers/HurtTimer
@@ -12,6 +13,8 @@ extends CharacterBody2D
 @onready var effects = $Effects
 @onready var health_dots = [$Control/Heart_One, $Control/Heart_One2, $Control/Heart_One3]
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
+
+var chase_targets = []
 
 var current_health: int
 var is_hurt: bool = false
@@ -43,8 +46,12 @@ func update_velocity():
 		MovementState.IDLE:
 			velocity = Vector2.ZERO
 		MovementState.CHASING:
-			if is_instance_valid(player):
-				nav_agent.target_position = player.global_position
+			if not chase_targets.is_empty():
+				var closest_target = chase_targets[0]
+				for target in chase_targets:
+					if position.distance_to(target.position) < position.distance_to(closest_target.position):
+						closest_target = target
+				nav_agent.target_position = closest_target.global_position
 				var direction = to_local(nav_agent.get_next_path_position()).normalized()
 				velocity = direction * speed
 			else:
@@ -60,11 +67,15 @@ func update_animation():
 
 func _on_detection_area_body_entered(body):
 	if body.is_in_group("Player") or body.is_in_group("Summon"):
+		if not body in chase_targets:
+			chase_targets.append(body)
 		current_movement_state = MovementState.CHASING
 
 func _on_detection_area_body_exited(body):
-	if body.is_in_group("Player") or body.is_in_group("Summon"):
-		current_movement_state = MovementState.IDLE
+	if body in chase_targets:
+		chase_targets.erase(body)
+		if chase_targets.is_empty():
+			current_movement_state = MovementState.IDLE
 
 func _on_hurt_box_area_entered(area):
 	if (area.name == "HitBox" and area.get_parent().is_in_group("Summon")) or area.get_parent().is_in_group("Player"):

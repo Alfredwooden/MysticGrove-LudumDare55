@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed: float = 20.0
 @export var max_health: int = 3
 @export var knockback_power: int = 500
+@export var humans: Node
 
 @onready var animations = $AnimatedSprite2D
 @onready var hurt_timer = $Timers/HurtTimer
@@ -12,7 +13,8 @@ extends CharacterBody2D
 @onready var health_dots = [$Control/Heart_One, $Control/Heart_One2, $Control/Heart_One3]
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 
-var chase_target = null
+var chase_targets = []
+
 var current_health: int
 var is_hurt: bool = false
 var enemy_collisions = []
@@ -38,17 +40,6 @@ func _physics_process(delta):
 		for enemy_area in enemy_collisions:
 			hurt_by_enemy(enemy_area)
 
-func update_velocity():
-	match current_movement_state:
-		MovementState.IDLE:
-			velocity = Vector2.ZERO
-		MovementState.CHASING:
-			if is_instance_valid(chase_target):
-				nav_agent.target_position = chase_target.global_position
-				var direction = to_local(nav_agent.get_next_path_position()).normalized()
-				velocity = direction * speed
-			else:
-				current_movement_state = MovementState.IDLE
 
 func update_animation():
 	match current_movement_state:
@@ -58,15 +49,34 @@ func update_animation():
 			animations.play("Chasing")
 			animations.flip_h = velocity.x < 0
 
+
 func _on_detection_area_body_entered(body):
 	if body.is_in_group("Enemy"):
-		chase_target = body
+		if not body in chase_targets:
+			chase_targets.append(body)
 		current_movement_state = MovementState.CHASING
 
 func _on_detection_area_body_exited(body):
-	if body == chase_target:
-		chase_target = null
-		current_movement_state = MovementState.IDLE
+	if body in chase_targets:
+		chase_targets.erase(body)
+		if chase_targets.is_empty():
+			current_movement_state = MovementState.IDLE
+
+func update_velocity():
+	match current_movement_state:
+		MovementState.IDLE:
+			velocity = Vector2.ZERO
+		MovementState.CHASING:
+			if not chase_targets.is_empty():
+				var closest_target = chase_targets[0]
+				for target in chase_targets:
+					if position.distance_to(target.position) < position.distance_to(closest_target.position):
+						closest_target = target
+				nav_agent.target_position = closest_target.global_position
+				var direction = to_local(nav_agent.get_next_path_position()).normalized()
+				velocity = direction * speed
+			else:
+				current_movement_state = MovementState.IDLE
 
 func _on_hurt_box_area_entered(area):
 	if (area.name == "HitBox" and area.get_parent().is_in_group("Enemy")):

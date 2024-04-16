@@ -49,6 +49,10 @@ func spawn_human(num_humans: int):
 		var new_human = load("res://Scenes/Characters/Human.tscn").instantiate()
 		humans_spawn_node.add_child(new_human)
 		new_human.global_position = Global.enemy_spawn_point.global_position
+		
+		# Assign the player and skeletons nodes to the human's chase targets
+		new_human.player = player
+		new_human.skeletons = skeletons_spawn_node
 	
 	# Update the number of spawned humans
 	Global.update_num_humans_spawned(num_humans)
@@ -58,6 +62,9 @@ func spawn_skeleton(num_skeletons: int):
 		var new_skeleton = load("res://Scenes/Characters/Skeleton.tscn").instantiate()
 		skeletons_spawn_node.add_child(new_skeleton)
 		new_skeleton.global_position = Global.summon_spawn_point.global_position
+		
+		# Assign the humans node to the skeleton's chase targets
+		new_skeleton.humans = humans_spawn_node
 	
 	# Update the number of spawned skeletons
 	Global.update_num_skeletons_spawned(num_skeletons)
