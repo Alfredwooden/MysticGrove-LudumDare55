@@ -1,12 +1,15 @@
 # Summoning_Zone.gd
 extends StaticBody2D
 
+@onready var soul_sprite = $SoulInterface/SoulGUI
+
 var soul = Global.get_soul_selected()
 var soul_growing = false
 var soul_grown = false
 
 func _ready():
-	$Summoning_circle.play("default")
+	$Summoning_circle.play("Summoning")
+	soul_sprite.visible = false
 	if not soul_growing:
 		$Soul/SoulArrow.play("default")
 
@@ -21,14 +24,16 @@ func _on_Area2D_area_entered(area):
 			soul_growing = true
 			$Timers/Skull_Timer.start()
 			$Soul.play("Skulls_growing")
-			print("Skull growing")
+			$Summoning_circle.play("Growing")
+			$Soul/SoulArrow.play("Growing")
 		elif soul == 2:
 			soul_growing = true
 			$Timers/Ghost_Timer.start()
 			$Soul.play("Ghosts_growing")
-			print("Ghost growing")
-	else:
-		print("Soul is already being summoned")
+			$Summoning_circle.play("Growing")
+			$Soul/SoulArrow.play("Growing")
+		else:
+			print("Soul is already being summoned")
 
 func _on_Skull_Timer_timeout():
 	var skull_soul = $Soul
@@ -43,6 +48,8 @@ func _on_Skull_Timer_timeout():
 		print("Skull frame 3")
 		skull_soul.frame = 3
 		soul_grown = true
+		$Summoning_circle.stop()
+		$Soul/SoulArrow.stop()
 
 func _on_Ghost_Timer_timeout():
 	var ghost_soul = $Soul
@@ -54,20 +61,25 @@ func _on_Ghost_Timer_timeout():
 	elif ghost_soul.frame == 2:
 		ghost_soul.frame = 3
 		soul_grown = true
+		$Summoning_circle.stop()
+		$Soul/SoulArrow.stop()
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if Input.is_action_just_pressed("click"):
 		if soul_grown:
 			if soul == 1:
 				Global.set_skull_souls(Global.get_skull_souls() + 1)
-				soul_growing = false
-				soul_grown = false
-				$Soul.play("None")
 			elif soul == 2:
 				Global.set_ghost_souls(Global.get_ghost_souls() + 1)
-				soul_growing = false
-				soul_grown = false
-				$Soul.play("None")
-			print("Number of Skulls => " + str(Global.get_skull_souls()))
-			print("Number of Ghosts => " + str(Global.get_ghost_souls()))
-			print("Number of Souls => " + str(Global.get_soul_coins()))
+			soul_growing = false
+			soul_grown = false
+			$Summoning_circle.play("default")
+			$Soul/SoulArrow.play("default")
+			$Soul.play("None")
+			_show_soul_sprite()
+
+func _show_soul_sprite():
+	soul_sprite.visible = true
+	soul_sprite.modulate = Color.WHITE
+	var tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.tween_property(soul_sprite, "modulate", Color.TRANSPARENT, 0.5)

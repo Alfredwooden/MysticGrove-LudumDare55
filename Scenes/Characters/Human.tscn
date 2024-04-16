@@ -87,7 +87,7 @@ radius = 5.0
 height = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sobfu"]
-radius = 33.0606
+radius = 139.014
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4tlbm"]
 radius = 5.0
@@ -155,7 +155,7 @@ animations = [{
 }]
 
 [node name="Human" type="CharacterBody2D" groups=["Enemy"]]
-z_index = 1
+z_index = 5
 y_sort_enabled = true
 collision_layer = 16
 script = ExtResource("1_aidq6")

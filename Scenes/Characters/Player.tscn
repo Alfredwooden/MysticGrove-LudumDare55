@@ -106,17 +106,16 @@ _data = {
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(0, 2)
-collision_layer = 4
+collision_layer = 5
 collision_mask = 17
 script = ExtResource("1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 clip_children = 2
-position = Vector2(0, 2)
 sprite_frames = SubResource("10")
 animation = &"Idle"
-offset = Vector2(0, -8)
+centered = false
+offset = Vector2(-8, -14)
 
 [node name="ColorRect" type="ColorRect" parent="AnimatedSprite2D"]
 offset_left = -20.0
@@ -126,19 +125,17 @@ offset_bottom = 21.0
 color = Color(0.45098, 0.0901961, 0.176471, 0)
 
 [node name="Collision" type="Node2D" parent="."]
-position = Vector2(0, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
-position = Vector2(0, -8)
+position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_nxn06")
 
 [node name="HurtBox" type="Area2D" parent="."]
-position = Vector2(0, 2)
 collision_layer = 4
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, -8)
+position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_s6xkj")
 
 [node name="Effects" type="AnimationPlayer" parent="."]
@@ -151,7 +148,7 @@ wait_time = 0.3
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, 2)
+visible = false
 zoom = Vector2(1.5, 1.5)
 limit_left = -400
 limit_top = -100

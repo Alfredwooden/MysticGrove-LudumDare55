@@ -1,0 +1,316 @@
+[gd_scene load_steps=13 format=3 uid="uid://2n4a0bfcydq8"]
+
+[ext_resource type="PackedScene" uid="uid://ct1tu3wgxxivw" path="res://Scenes/Characters/Player.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://baiiyg2egvexe" path="res://Scenes/UI/ui.tscn" id="2_ur70f"]
+[ext_resource type="Script" path="res://Scripts/World.gd" id="7"]
+[ext_resource type="PackedScene" uid="uid://dxa56fu4v1j81" path="res://Scenes/Overworld/Shop.tscn" id="7_8hk3o"]
+[ext_resource type="PackedScene" uid="uid://yb8ckkxwpdgq" path="res://Scenes/Overworld/Human_spawn_point.tscn" id="8_3wphr"]
+[ext_resource type="PackedScene" uid="uid://cjkh0q0e0201v" path="res://Scenes/Farming/Summoning_zone.tscn" id="8_ap4ru"]
+[ext_resource type="PackedScene" uid="uid://vufagd1ankfg" path="res://Scenes/Overworld/Summon_spawn_point.tscn" id="9_t0aeh"]
+[ext_resource type="PackedScene" uid="uid://b4g4hvi7gc1ab" path="res://Scenes/Overworld/Training_dummy.tscn" id="10_7x5xk"]
+[ext_resource type="PackedScene" uid="uid://5mcvsglxljxu" path="res://Scenes/Overworld/Isometric_Village.tscn" id="10_74lug"]
+[ext_resource type="PackedScene" uid="uid://bfj4fce8yked1" path="res://Scenes/Extras/Day_And_Night.tscn" id="10_o0j6j"]
+[ext_resource type="PackedScene" uid="uid://2l2clqggacmm" path="res://Scenes/Characters/Human.tscn" id="11_ewks8"]
+[ext_resource type="PackedScene" uid="uid://bwx8r72rlijnl" path="res://Scenes/Characters/Skeleton.tscn" id="12_7exfn"]
+
+[node name="World" type="Node2D"]
+y_sort_enabled = true
+position = Vector2(160, 92)
+script = ExtResource("7")
+
+[node name="UI" parent="." instance=ExtResource("2_ur70f")]
+
+[node name="Day_And_Night" parent="." instance=ExtResource("10_o0j6j")]
+position = Vector2(0, -15)
+length_of_day = 6
+length_of_night = 3
+
+[node name="Isometric_Village" parent="." instance=ExtResource("10_74lug")]
+position = Vector2(-12, -25)
+
+[node name="Player" parent="Isometric_Village" instance=ExtResource("2")]
+position = Vector2(80, 47)
+
+[node name="TrainingDummy" parent="Isometric_Village" instance=ExtResource("10_7x5xk")]
+position = Vector2(64, 24)
+
+[node name="Summoning_Zones" type="Node" parent="Isometric_Village"]
+
+[node name="Summoning_Zone" parent="Isometric_Village/Summoning_Zones" instance=ExtResource("8_ap4ru")]
+position = Vector2(228, 140)
+
+[node name="Summoning_Zone2" parent="Isometric_Village/Summoning_Zones" instance=ExtResource("8_ap4ru")]
+position = Vector2(180, 116)
+
+[node name="Summoning_Zone3" parent="Isometric_Village/Summoning_Zones" instance=ExtResource("8_ap4ru")]
+position = Vector2(212, 148)
+
+[node name="Summoning_Zone4" parent="Isometric_Village/Summoning_Zones" instance=ExtResource("8_ap4ru")]
+position = Vector2(164, 124)
+
+[node name="Summoning_Zone5" parent="Isometric_Village/Summoning_Zones" instance=ExtResource("8_ap4ru")]
+position = Vector2(244, 148)
+
+[node name="Summoning_Zone6" parent="Isometric_Village/Summoning_Zones" instance=ExtResource("8_ap4ru")]
+position = Vector2(196, 124)
+
+[node name="Summoning_Zone7" parent="Isometric_Village/Summoning_Zones" instance=ExtResource("8_ap4ru")]
+position = Vector2(228, 156)
+
+[node name="Summoning_Zone8" parent="Isometric_Village/Summoning_Zones" instance=ExtResource("8_ap4ru")]
+position = Vector2(180, 132)
+
+[node name="Shop" parent="Isometric_Village" instance=ExtResource("7_8hk3o")]
+position = Vector2(128, 45)
+
+[node name="HumanSpawnPoint" parent="Isometric_Village" instance=ExtResource("8_3wphr")]
+position = Vector2(224, -35)
+
+[node name="SummonSpawnPoint" parent="Isometric_Village" instance=ExtResource("9_t0aeh")]
+position = Vector2(80, 21)
+
+[node name="Spawns" type="Node" parent="Isometric_Village"]
+
+[node name="Humans" type="Node" parent="Isometric_Village/Spawns"]
+
+[node name="Human" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(144, 22)
+
+[node name="Human2" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(156, 29)
+
+[node name="Human3" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(135, 28)
+
+[node name="Human4" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(147, 35)
+
+[node name="Human5" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(166, 36)
+
+[node name="Human6" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(178, 43)
+
+[node name="Human7" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(157, 42)
+
+[node name="Human8" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(169, 49)
+
+[node name="Human9" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(165, 39)
+
+[node name="Human10" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(166, 37)
+
+[node name="Human11" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(165, 27)
+
+[node name="Human12" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(158, 32)
+
+[node name="Human13" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(177, 33)
+
+[node name="Human14" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(189, 40)
+
+[node name="Human15" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(168, 39)
+
+[node name="Human16" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(158, 27)
+
+[node name="Human17" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(136, 25)
+
+[node name="Human18" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(148, 32)
+
+[node name="Human19" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(127, 31)
+
+[node name="Human20" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(139, 38)
+
+[node name="Human21" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(158, 39)
+
+[node name="Human22" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(171, 39)
+
+[node name="Human23" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(150, 38)
+
+[node name="Human24" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(155, 35)
+
+[node name="Human25" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(135, 23)
+
+[node name="Human26" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(147, 30)
+
+[node name="Human27" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(126, 29)
+
+[node name="Human28" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(138, 36)
+
+[node name="Human29" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(157, 37)
+
+[node name="Human30" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(169, 44)
+
+[node name="Human31" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(148, 43)
+
+[node name="Human32" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(160, 50)
+
+[node name="Human33" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(138, 36)
+
+[node name="Human34" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(157, 37)
+
+[node name="Human35" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(169, 44)
+
+[node name="Human36" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(148, 43)
+
+[node name="Human37" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(160, 50)
+
+[node name="Human38" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(169, 44)
+
+[node name="Human39" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(148, 43)
+
+[node name="Human40" parent="Isometric_Village/Spawns/Humans" instance=ExtResource("11_ewks8")]
+position = Vector2(160, 50)
+
+[node name="Skeletons" type="Node" parent="Isometric_Village/Spawns"]
+
+[node name="Skeleton" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(70, 62)
+
+[node name="Skeleton2" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(81, 68)
+
+[node name="Skeleton3" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(91, 73)
+
+[node name="Skeleton4" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(103, 78)
+
+[node name="Skeleton5" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(57, 71)
+
+[node name="Skeleton6" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(68, 77)
+
+[node name="Skeleton7" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(78, 82)
+
+[node name="Skeleton8" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(90, 87)
+
+[node name="Skeleton9" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(45, 83)
+
+[node name="Skeleton10" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(56, 89)
+
+[node name="Skeleton11" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(66, 94)
+
+[node name="Skeleton12" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(78, 99)
+
+[node name="Skeleton13" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(51, 78)
+
+[node name="Skeleton14" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(62, 84)
+
+[node name="Skeleton15" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(72, 89)
+
+[node name="Skeleton16" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(84, 94)
+
+[node name="Skeleton17" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(64, 67)
+
+[node name="Skeleton18" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(75, 73)
+
+[node name="Skeleton19" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(85, 78)
+
+[node name="Skeleton20" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(97, 83)
+
+[node name="Skeleton21" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(66, 60)
+
+[node name="Skeleton22" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(77, 66)
+
+[node name="Skeleton23" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(87, 71)
+
+[node name="Skeleton24" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(99, 76)
+
+[node name="Skeleton25" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(53, 69)
+
+[node name="Skeleton26" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(64, 75)
+
+[node name="Skeleton27" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(74, 80)
+
+[node name="Skeleton28" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(86, 85)
+
+[node name="Skeleton29" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(41, 81)
+
+[node name="Skeleton30" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(52, 87)
+
+[node name="Skeleton31" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(62, 92)
+
+[node name="Skeleton32" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(74, 97)
+
+[node name="Skeleton33" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(47, 76)
+
+[node name="Skeleton34" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(58, 82)
+
+[node name="Skeleton35" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(68, 87)
+
+[node name="Skeleton36" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(80, 92)
+
+[node name="Skeleton37" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(60, 65)
+
+[node name="Skeleton38" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(71, 71)
+
+[node name="Skeleton39" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(81, 76)
+
+[node name="Skeleton40" parent="Isometric_Village/Spawns/Skeletons" instance=ExtResource("12_7exfn")]
+position = Vector2(93, 81)

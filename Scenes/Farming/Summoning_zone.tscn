@@ -1,40 +1,60 @@
-[gd_scene load_steps=23 format=3 uid="uid://cjkh0q0e0201v"]
+[gd_scene load_steps=26 format=3 uid="uid://cjkh0q0e0201v"]
 
 [ext_resource type="Texture2D" uid="uid://xuelymkgd7uh" path="res://Assets/Souls.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://bteq651d33c6s" path="res://Assets/Isometric_Tiles.png" id="2_08yap"]
 [ext_resource type="Script" path="res://Scripts/Summoning_zone.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://bl4iglcswogmo" path="res://Assets/UI.png" id="4_2ggj7"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bwbh7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8mtl"]
 atlas = ExtResource("2_08yap")
-region = Rect2(32, 96, 32, 32)
+region = Rect2(96, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0fvcj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dm00"]
 atlas = ExtResource("2_08yap")
-region = Rect2(32, 128, 32, 32)
+region = Rect2(96, 96, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b4mwk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0pkm"]
 atlas = ExtResource("2_08yap")
-region = Rect2(32, 160, 32, 32)
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0hll"]
+atlas = ExtResource("2_08yap")
+region = Rect2(96, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nd0ro"]
+atlas = ExtResource("2_08yap")
+region = Rect2(96, 192, 32, 32)
 
 [sub_resource type="SpriteFrames" id="1"]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"Growing",
+"speed": 0.0
+}, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bwbh7")
+"texture": SubResource("AtlasTexture_p8mtl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0fvcj")
+"texture": SubResource("AtlasTexture_0dm00")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b4mwk")
+"texture": SubResource("AtlasTexture_n0pkm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0hll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nd0ro")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 4.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7xv3v"]
-radius = 6.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_7r7xy"]
+radius = 7.0
 
 [sub_resource type="AtlasTexture" id="9"]
 atlas = ExtResource("2")
@@ -51,10 +71,6 @@ region = Rect2(48, 16, 16, 16)
 [sub_resource type="AtlasTexture" id="12"]
 atlas = ExtResource("2")
 region = Rect2(64, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="17"]
-atlas = ExtResource("2")
-region = Rect2(112, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="13"]
 atlas = ExtResource("2")
@@ -93,11 +109,11 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("17")
+"texture": null
 }],
 "loop": true,
 "name": &"None",
-"speed": 0.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -117,6 +133,10 @@ animations = [{
 "speed": 0.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_uomso"]
+atlas = ExtResource("2")
+region = Rect2(96, 16, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_knkid"]
 atlas = ExtResource("2")
 region = Rect2(80, 64, 16, 16)
@@ -133,6 +153,14 @@ region = Rect2(112, 64, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_uomso")
+}],
+"loop": true,
+"name": &"Growing",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_knkid")
 }, {
 "duration": 1.0,
@@ -143,33 +171,36 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 2.0
+"speed": 6.0
 }]
 
 [node name="Summoning_Zone" type="StaticBody2D"]
-z_index = 1
 y_sort_enabled = true
 script = ExtResource("3")
 
 [node name="Summoning_circle" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -16)
 sprite_frames = SubResource("1")
+frame = 2
+frame_progress = 0.186612
+centered = false
+offset = Vector2(-16, -16)
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_7xv3v")
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_7r7xy")
 
 [node name="Soul" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -9)
 sprite_frames = SubResource("8")
 animation = &"None"
+centered = false
+offset = Vector2(-8, -19)
 
 [node name="SoulArrow" type="AnimatedSprite2D" parent="Soul"]
-position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_s0vtc")
-frame_progress = 0.858441
+centered = false
+offset = Vector2(-8, -23.185)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
@@ -180,6 +211,20 @@ wait_time = 2.0
 
 [node name="Ghost_Timer" type="Timer" parent="Timers"]
 wait_time = 2.0
+
+[node name="SoulInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -7.0
+offset_top = -31.0
+offset_right = 5.0
+
+[node name="SoulGUI" type="Sprite2D" parent="SoulInterface"]
+position = Vector2(12, 3)
+texture = ExtResource("4_2ggj7")
+hframes = 8
+vframes = 8
+frame = 14
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]

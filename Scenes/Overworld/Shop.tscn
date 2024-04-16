@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dxa56fu4v1j81"]
+[gd_scene load_steps=18 format=3 uid="uid://dxa56fu4v1j81"]
 
 [ext_resource type="Texture2D" uid="uid://bubbaqlvdvs35" path="res://Assets/Character.png" id="1"]
 [ext_resource type="Script" path="res://Scripts/Shop.gd" id="3"]
@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://bih1ryx3mj5ok" path="res://Scenes/Farming/Skull_soulpack.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://dkud8ij8qu2dh" path="res://Scenes/Farming/Ghost_soulpack.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://ciqn4p8aes3mk" path="res://Scenes/Overworld/Sell_Zone.tscn" id="7_h0rf6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jkm15"]
+radius = 10.7877
+height = 39.4406
 
 [sub_resource type="AtlasTexture" id="3"]
 atlas = ExtResource("1")
@@ -37,69 +41,83 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kl7yf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4ksf"]
 atlas = ExtResource("3_1ctmm")
-region = Rect2(128, 108, 32, 36)
+region = Rect2(320, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdr06"]
+atlas = ExtResource("3_1ctmm")
+region = Rect2(384, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5ntt"]
+atlas = ExtResource("3_1ctmm")
+region = Rect2(448, 448, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gse04"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kl7yf")
+"texture": SubResource("AtlasTexture_n4ksf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdr06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5ntt")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="8"]
-radius = 6.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jkm15"]
-radius = 6.2033
-height = 24.6334
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xu172"]
+radius = 5.0
+height = 24.0416
 
 [node name="Shop" type="StaticBody2D"]
 z_index = 1
 y_sort_enabled = true
+collision_layer = 29
+collision_mask = 29
 script = ExtResource("3")
 
-[node name="Seller_Sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(2, -21)
-sprite_frames = SubResource("6")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, -17)
-sprite_frames = SubResource("SpriteFrames_gse04")
-
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-2, -15)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-5, 11)
-shape = SubResource("8")
-
 [node name="CollisionShop" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -10)
+position = Vector2(6, -4)
 rotation = -1.05592
 shape = SubResource("CapsuleShape2D_jkm15")
+
+[node name="Seller_Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(10, 13)
+sprite_frames = SubResource("6")
+centered = false
+offset = Vector2(-8, -12)
+
+[node name="Sell_Zone" parent="Seller_Sprite" instance=ExtResource("7_h0rf6")]
+y_sort_enabled = false
+position = Vector2(0, -5)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gse04")
+centered = false
+offset = Vector2(-24, -44)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 6)
+rotation = -1.0472
+shape = SubResource("CapsuleShape2D_xu172")
 
 [node name="External" type="Node2D" parent="."]
 
 [node name="Ghost_soulpack" parent="External" instance=ExtResource("6")]
-visible = false
-position = Vector2(14, -7)
+position = Vector2(29, 5)
 
 [node name="Skull_soulpack" parent="External" instance=ExtResource("5")]
-visible = false
-position = Vector2(8, -5)
+position = Vector2(20, 10)
 
 [node name="ShopMenu" parent="External" instance=ExtResource("4")]
 visible = false
-
-[node name="Sell_Zone" parent="External" instance=ExtResource("7_h0rf6")]
-y_sort_enabled = false
-position = Vector2(-7, -4)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

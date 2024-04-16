@@ -1,24 +1,52 @@
-[gd_scene load_steps=4 format=3 uid="uid://yb8ckkxwpdgq"]
+[gd_scene load_steps=8 format=3 uid="uid://yb8ckkxwpdgq"]
 
 [ext_resource type="Texture2D" uid="uid://bteq651d33c6s" path="res://Assets/Isometric_Tiles.png" id="1_2gn2f"]
+[ext_resource type="Script" path="res://Scripts/Human_spawn_point.gd" id="1_ykk0d"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fxc45"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nj34o"]
 atlas = ExtResource("1_2gn2f")
-region = Rect2(160, 176, 32, 44)
+region = Rect2(320, 384, 64, 64)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_i1lvn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt4gk"]
+atlas = ExtResource("1_2gn2f")
+region = Rect2(384, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qy4te"]
+atlas = ExtResource("1_2gn2f")
+region = Rect2(448, 384, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f70ha"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fxc45")
+"texture": SubResource("AtlasTexture_nj34o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt4gk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qy4te")
 }],
 "loop": true,
 "name": &"default",
-"speed": 4.0
+"speed": 6.0
 }]
 
-[node name="HumanSpawnPoint" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_37j3b"]
+radius = 10.7877
+height = 39.4406
+
+[node name="HumanSpawnPoint" type="StaticBody2D"]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_ykk0d")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(16, -22)
-sprite_frames = SubResource("SpriteFrames_i1lvn")
+sprite_frames = SubResource("SpriteFrames_f70ha")
+centered = false
+offset = Vector2(-24, -44)
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(6, -4)
+rotation = -1.05592
+shape = SubResource("CapsuleShape2D_37j3b")

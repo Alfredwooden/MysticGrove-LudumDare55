@@ -49,10 +49,6 @@ func _physics_process(delta):
 		
 		for enemy_area in enemy_collisions:
 			hurt_by_enemy(enemy_area)
-		
-		print("Current movement state: ", current_movement_state)
-		print("Velocity: ", velocity)
-		print("Chase target: ", chase_target)
 
 func update_velocity():
 	match current_movement_state:
@@ -78,18 +74,14 @@ func update_animation():
 			animations.play("Chasing")
 
 func _on_detection_area_body_entered(body):
-	print("Body entered detection area: ", body)
 	if body.is_in_group("Player") or body.is_in_group("Summon"):
 		chase_target = body
 		current_movement_state = MovementState.CHASING
-		print("Started chasing: ", chase_target)
 
 func _on_detection_area_body_exited(body):
-	print("Body exited detection area: ", body)
 	if body == chase_target:
 		chase_target = null
 		current_movement_state = MovementState.WALKING
-		print("Stopped chasing")
 
 func _on_change_state_timer_timeout():
 	match current_movement_state:
@@ -105,7 +97,6 @@ func _on_moving_timer_timeout():
 	if current_movement_state == MovementState.WALKING:
 		var random_direction = Vector2(randi_range(-1, 1), randi_range(-1, 1)).normalized()
 		velocity_direction = random_direction if random_direction != Vector2.ZERO else Vector2.RIGHT
-		print("New walking direction: ", velocity_direction)
 	moving_timer.wait_time = randi_range(moving_wait_time_range.x, moving_wait_time_range.y)
 	moving_timer.start()
 
