@@ -1,4 +1,3 @@
-# TrainingDummy.gd
 extends StaticBody2D
 
 @export var souls_per_click: int = 1
@@ -6,14 +5,16 @@ extends StaticBody2D
 
 @onready var animated_sprite = $TrainingDummySprite
 @onready var click_area = $ClickArea
-@onready var soul_sprite = $SoulInterface/SoulGUI
+@onready var soul_spawn_position = $SoulInterface
+@onready var soul_container = $SoulInterface
+@onready var effects = $Effects
 
 var can_click: bool = true
 var click_timer: Timer
+var soul_scene = preload("res://Scenes/UI/More_Souls_GUI.tscn")
 
 func _ready():
 	animated_sprite.play("Idle")
-	soul_sprite.visible = false
 	click_timer = Timer.new()
 	click_timer.wait_time = 0.5 / clicks_per_second
 	click_timer.one_shot = true
@@ -29,13 +30,19 @@ func _on_ClickArea_input_event(viewport, event, shape_idx):
 
 func _on_click_training_dummy():
 	Global.set_soul_coins(Global.get_soul_coins() + souls_per_click)
-	_show_soul_sprite()
+	_spawn_soul_icon()
+	effects.play("HurtBlink")
+	await effects.animation_finished
+	effects.play("RESET")
 
-func _show_soul_sprite():
-	soul_sprite.visible = true
-	soul_sprite.modulate = Color.WHITE
+func _spawn_soul_icon():
+	var soul_icon = soul_scene.instantiate()
+	soul_container.add_child(soul_icon)
+	soul_icon.global_position = soul_spawn_position.global_position
+
 	var tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	tween.tween_property(soul_sprite, "modulate", Color.TRANSPARENT, 0.5)
+	tween.tween_property(soul_icon, "global_position", soul_icon.global_position + Vector2(0, -5), 0.2)
+	tween.tween_callback(soul_icon.queue_free)
 
 func _on_click_area_mouse_entered():
 	animated_sprite.play("Clicking")

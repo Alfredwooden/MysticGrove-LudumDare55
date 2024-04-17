@@ -10,8 +10,11 @@ func setMaxHearts(max: int):
 func updateHearts(currentHealth: int):
 	var hearts = get_children()
 	
-	for i in range(currentHealth):
-		hearts[i].update(true)
-	
-	for i in range(currentHealth, hearts.size()):
-		hearts[i].update(false)
+	# Update the existing hearts
+	for i in range(hearts.size()):
+		if i < currentHealth:
+			if i < hearts.size():
+				hearts[i].update(true)
+		else:
+			if i < hearts.size():
+				hearts[i].update(false)

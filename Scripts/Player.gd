@@ -84,7 +84,7 @@ func knockback(enemyVelocity: Vector2):
 	move_and_slide()
 
 func die():
-	animatedSprite.play("Die")
+	#animatedSprite.play("Die")
 	await animatedSprite.animation_finished
 	queue_free()
 	restart_game()

@@ -31,14 +31,12 @@ position = Vector2(80, 47)
 
 [node name="TrainingDummy" parent="Isometric_Village" instance=ExtResource("10_7x5xk")]
 position = Vector2(64, 24)
-souls_per_click = 1
-clicks_per_second = 2.0
 
 [node name="Shop" parent="Isometric_Village" instance=ExtResource("7_8hk3o")]
 position = Vector2(128, 45)
 
 [node name="HumanSpawnPoint" parent="Isometric_Village" instance=ExtResource("8_3wphr")]
-position = Vector2(224, -35)
+position = Vector2(212, -29)
 
 [node name="SummonSpawnPoint" parent="Isometric_Village" instance=ExtResource("9_t0aeh")]
 position = Vector2(80, 21)
