@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://vufagd1ankfg"]
+[gd_scene load_steps=6 format=3 uid="uid://vufagd1ankfg"]
 
 [ext_resource type="Texture2D" uid="uid://bteq651d33c6s" path="res://Assets/Isometric_Tiles.png" id="1_qhdcy"]
 
@@ -31,10 +31,6 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bnbny"]
-radius = 10.7877
-height = 39.4406
-
 [node name="SummonSpawnPoint" type="StaticBody2D"]
 z_index = 1
 y_sort_enabled = true
@@ -44,7 +40,5 @@ sprite_frames = SubResource("SpriteFrames_fl3i0")
 centered = false
 offset = Vector2(-24, -44)
 
-[node name="CollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(6, -4)
-rotation = -1.05592
-shape = SubResource("CapsuleShape2D_bnbny")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(16, 9, -11, -5, 0, -12, 29, 3, 17, 9)

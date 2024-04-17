@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var max_health: int = 3
 @export var knockback_power: int = 500
 @export var humans: Node
+@export var idle_duration: float = 2.0
+@export var walking_range: float = 50.0
 
 @onready var animations = $AnimatedSprite2D
 @onready var hurt_timer = $Timers/HurtTimer
@@ -12,15 +14,18 @@ extends CharacterBody2D
 @onready var effects = $Effects
 @onready var health_dots = [$Control/Heart_One, $Control/Heart_One2, $Control/Heart_One3]
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
+@onready var idle_timer := $Timers/IdleTimer
+@onready var movement_timer := $Timers/MovementTimer
 
 var chase_targets = []
-
 var current_health: int
 var is_hurt: bool = false
 var enemy_collisions = []
+var walking_target_position: Vector2
 
 enum MovementState {
 	IDLE,
+	WALKING,
 	CHASING
 }
 
@@ -30,6 +35,8 @@ func _ready():
 	current_health = max_health
 	effects.play("RESET")
 	update_health_dots()
+	idle_timer.wait_time = idle_duration
+	idle_timer.start()
 
 func _physics_process(delta):
 	if not is_hurt:
@@ -40,15 +47,16 @@ func _physics_process(delta):
 		for enemy_area in enemy_collisions:
 			hurt_by_enemy(enemy_area)
 
-
 func update_animation():
 	match current_movement_state:
 		MovementState.IDLE:
 			animations.play("Idle")
+		MovementState.WALKING:
+			animations.play("Walk")
+			animations.flip_h = velocity.x < 0
 		MovementState.CHASING:
 			animations.play("Chasing")
 			animations.flip_h = velocity.x < 0
-
 
 func _on_detection_area_body_entered(body):
 	if body.is_in_group("Enemy"):
@@ -66,6 +74,13 @@ func update_velocity():
 	match current_movement_state:
 		MovementState.IDLE:
 			velocity = Vector2.ZERO
+		MovementState.WALKING:
+			if position.distance_to(walking_target_position) <= 5.0:
+				current_movement_state = MovementState.IDLE
+				idle_timer.start()
+			else:
+				var direction = position.direction_to(walking_target_position)
+				velocity = direction * speed
 		MovementState.CHASING:
 			if not chase_targets.is_empty():
 				var closest_target = chase_targets[0]
@@ -118,3 +133,14 @@ func die():
 func update_health_dots():
 	for i in range(max_health):
 		health_dots[i].frame = 1 if i < current_health else 0
+
+func _on_IdleTimer_timeout():
+	if current_movement_state == MovementState.IDLE:
+		current_movement_state = MovementState.WALKING
+		var random_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
+		walking_target_position = position + random_direction * walking_range
+
+func _on_MovementTimer_timeout():
+	if current_movement_state == MovementState.WALKING:
+		current_movement_state = MovementState.IDLE
+		idle_timer.start()

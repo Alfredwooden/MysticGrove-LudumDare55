@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dxa56fu4v1j81" path="res://Scenes/Overworld/Shop.tscn" id="7_8hk3o"]
 [ext_resource type="PackedScene" uid="uid://yb8ckkxwpdgq" path="res://Scenes/Overworld/Human_spawn_point.tscn" id="8_3wphr"]
 [ext_resource type="PackedScene" uid="uid://cjkh0q0e0201v" path="res://Scenes/Farming/Summoning_zone.tscn" id="8_ap4ru"]
-[ext_resource type="PackedScene" uid="uid://vufagd1ankfg" path="res://Scenes/Overworld/summon_spawn_point.tscn" id="9_t0aeh"]
-[ext_resource type="PackedScene" uid="uid://b4g4hvi7gc1ab" path="res://Scenes/Overworld/training_dummy.tscn" id="10_7x5xk"]
+[ext_resource type="PackedScene" uid="uid://vufagd1ankfg" path="res://Scenes/Overworld/Summon_spawn_point.tscn" id="9_t0aeh"]
+[ext_resource type="PackedScene" uid="uid://b4g4hvi7gc1ab" path="res://Scenes/Overworld/Training_dummy.tscn" id="10_7x5xk"]
 [ext_resource type="PackedScene" uid="uid://5mcvsglxljxu" path="res://Scenes/Overworld/Isometric_Village.tscn" id="10_74lug"]
 [ext_resource type="PackedScene" uid="uid://bfj4fce8yked1" path="res://Scenes/Extras/Day_And_Night.tscn" id="10_o0j6j"]
 
@@ -20,8 +20,8 @@ script = ExtResource("7")
 
 [node name="Day_And_Night" parent="." instance=ExtResource("10_o0j6j")]
 position = Vector2(0, -15)
-length_of_day = 6
-length_of_night = 3
+length_of_day = 15
+length_of_night = 30
 
 [node name="Isometric_Village" parent="." instance=ExtResource("10_74lug")]
 position = Vector2(-12, -25)

@@ -1,13 +1,14 @@
 # Global.gd
-
 extends Node
 
 var soul_selected = 1
 var num_of_skulls = 0
 var num_of_ghosts = 0
-var num_of_souls = 500
-var ghost_souls = 0
+var num_of_devils = 0
+var num_of_souls = 80
 var skull_souls = 0
+var ghost_souls = 0
+var devil_souls = 0
 
 var camera_pos
 var enemy_spawn_point
@@ -34,6 +35,11 @@ func set_ghost_souls(value):
 	ghost_souls = value
 	emit_signal("ghost_souls_updated", ghost_souls)
 
+# Set the number of ghost souls
+func set_devil_souls(value):
+	devil_souls = value
+	emit_signal("devil_souls_updated", devil_souls)
+
 # Set the number of skull souls
 func set_skull_souls(value):
 	skull_souls = value
@@ -42,6 +48,10 @@ func set_skull_souls(value):
 # Get the number of soul coins
 func get_soul_coins():
 	return num_of_souls
+
+# Get the number of devil souls
+func get_devil_souls():
+	return devil_souls
 
 # Get the number of ghost souls
 func get_ghost_souls():

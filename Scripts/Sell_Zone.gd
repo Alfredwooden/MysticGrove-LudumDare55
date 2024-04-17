@@ -1,7 +1,9 @@
 extends StaticBody2D
 
 func _on_Area2D_body_entered(body):
-	if body.has_method("player_sell_method"):
+	if body.is_in_group("Player"):
+		print("Got here")
+		
 		# Retrieve the current counts
 		var skulls = Global.get_skull_souls()
 		var ghosts = Global.get_ghost_souls()

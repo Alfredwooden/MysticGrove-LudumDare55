@@ -5,11 +5,10 @@
 [node name="Ghosts_GUI" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(32, 12)
-offset_right = 32.0
-offset_bottom = 12.0
+offset_right = 39.0
+offset_bottom = 17.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-2, -2)
 texture = ExtResource("1_ycrea")
 centered = false
 hframes = 8
@@ -21,10 +20,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 12.0
-offset_top = -1.0
-offset_right = 22.0
-offset_bottom = 15.0
+offset_left = 16.0
+offset_right = 26.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)

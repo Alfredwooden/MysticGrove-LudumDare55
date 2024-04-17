@@ -1,21 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgrhesmi4ccnx"]
+[gd_scene load_steps=2 format=3 uid="uid://bongmu4ralg3p"]
 
-[ext_resource type="Texture2D" uid="uid://xuelymkgd7uh" path="res://Assets/Souls.png" id="1_cm06p"]
+[ext_resource type="Texture2D" uid="uid://xuelymkgd7uh" path="res://Assets/Souls.png" id="1_68aym"]
 
-[node name="Skulls_GUI" type="Panel"]
+[node name="Devils_GUI" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(32, 12)
 offset_right = 40.0
 offset_bottom = 16.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_cm06p")
+texture = ExtResource("1_68aym")
 centered = false
 hframes = 8
 vframes = 8
-frame = 1
+frame = 17
 
-[node name="SkullLabel" type="RichTextLabel" parent="."]
+[node name="DevilLabel" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

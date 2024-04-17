@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cp8k0gvt4h1re"]
+[gd_scene load_steps=15 format=3 uid="uid://cp8k0gvt4h1re"]
 
 [ext_resource type="Texture2D" uid="uid://xuelymkgd7uh" path="res://Assets/Souls.png" id="1"]
 [ext_resource type="Script" path="res://Scripts/ShopMenu.gd" id="2"]
@@ -7,6 +7,10 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_6wlmi"]
 atlas = ExtResource("2_c0t01")
 region = Rect2(12, 43, 88, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbbw6"]
+atlas = ExtResource("1")
+region = Rect2(16, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="8"]
 atlas = ExtResource("1")
@@ -18,6 +22,14 @@ region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="2"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbbw6")
+}],
+"loop": true,
+"name": &"Devil",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("8")
@@ -90,44 +102,46 @@ script = ExtResource("2")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(128, 128)
-offset_left = 163.0
-offset_top = 179.0
-offset_right = 291.0
-offset_bottom = 307.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -44.0
+offset_right = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 6
 texture = SubResource("AtlasTexture_6wlmi")
 stretch_mode = 4
 
-[node name="Control" type="Control" parent="TextureRect"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 7.0
-offset_top = 9.0
-offset_right = 121.0
-offset_bottom = 75.0
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 122.0
+offset_bottom = 77.0
 
-[node name="SoulsBagsIcon" type="AnimatedSprite2D" parent="TextureRect/Control"]
+[node name="Control" type="Control" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+
+[node name="SoulsBagsIcon" type="AnimatedSprite2D" parent="TextureRect/MarginContainer/Control"]
 position = Vector2(57, 30)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("2")
-animation = &"Skull"
+animation = &"Devil"
 
-[node name="Price" type="TextureRect" parent="TextureRect/Control"]
+[node name="Price" type="TextureRect" parent="TextureRect/MarginContainer/Control"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -24.0
-offset_top = 30.0
-offset_right = 24.0
-offset_bottom = 46.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -48.0
+offset_bottom = 16.0
+grow_horizontal = 0
 texture = SubResource("AtlasTexture_ybwaa")
 stretch_mode = 4
 
-[node name="PriceLabel" type="RichTextLabel" parent="TextureRect/Control/Price"]
+[node name="PriceLabel" type="RichTextLabel" parent="TextureRect/MarginContainer/Control/Price"]
 clip_contents = false
 layout_direction = 2
 layout_mode = 1
@@ -149,7 +163,7 @@ autowrap_mode = 0
 context_menu_enabled = true
 shortcut_keys_enabled = false
 
-[node name="MarginContainer" type="MarginContainer" parent="TextureRect/Control"]
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/MarginContainer/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -161,60 +175,60 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="LeftButton" type="Button" parent="TextureRect/Control/MarginContainer"]
+[node name="LeftButton" type="Button" parent="TextureRect/MarginContainer/Control/MarginContainer"]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
-[node name="Background" type="Sprite2D" parent="TextureRect/Control/MarginContainer/LeftButton"]
+[node name="Background" type="Sprite2D" parent="TextureRect/MarginContainer/Control/MarginContainer/LeftButton"]
 position = Vector2(9, 9)
 texture = ExtResource("2_c0t01")
 hframes = 8
 vframes = 8
 
-[node name="LeftButtonIcon" type="AnimatedSprite2D" parent="TextureRect/Control/MarginContainer/LeftButton"]
+[node name="LeftButtonIcon" type="AnimatedSprite2D" parent="TextureRect/MarginContainer/Control/MarginContainer/LeftButton"]
 position = Vector2(9, 9)
 sprite_frames = SubResource("5")
 animation = &"Left"
 
-[node name="RightButton" type="Button" parent="TextureRect/Control/MarginContainer"]
+[node name="RightButton" type="Button" parent="TextureRect/MarginContainer/Control/MarginContainer"]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 
-[node name="Background" type="Sprite2D" parent="TextureRect/Control/MarginContainer/RightButton"]
+[node name="Background" type="Sprite2D" parent="TextureRect/MarginContainer/Control/MarginContainer/RightButton"]
 position = Vector2(9, 9)
 texture = ExtResource("2_c0t01")
 hframes = 8
 vframes = 8
 
-[node name="RightButtonIcon" type="AnimatedSprite2D" parent="TextureRect/Control/MarginContainer/RightButton"]
+[node name="RightButtonIcon" type="AnimatedSprite2D" parent="TextureRect/MarginContainer/Control/MarginContainer/RightButton"]
 position = Vector2(9, 9)
 sprite_frames = SubResource("5")
 animation = &"Right"
 
-[node name="BuyButton" type="Button" parent="TextureRect/Control/MarginContainer"]
+[node name="BuyButton" type="Button" parent="TextureRect/MarginContainer/Control/MarginContainer"]
 self_modulate = Color(1, 1, 1, 0.160784)
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="Background" type="Sprite2D" parent="TextureRect/Control/MarginContainer/BuyButton"]
+[node name="Background" type="Sprite2D" parent="TextureRect/MarginContainer/Control/MarginContainer/BuyButton"]
 position = Vector2(9, 9)
 texture = ExtResource("2_c0t01")
 hframes = 8
 vframes = 8
 
-[node name="BuyButtonIcon" type="AnimatedSprite2D" parent="TextureRect/Control/MarginContainer/BuyButton"]
+[node name="BuyButtonIcon" type="AnimatedSprite2D" parent="TextureRect/MarginContainer/Control/MarginContainer/BuyButton"]
 position = Vector2(9, 9)
 sprite_frames = SubResource("5")
 animation = &"Buy"
 
-[connection signal="pressed" from="TextureRect/Control/MarginContainer/LeftButton" to="." method="_on_LeftButton_pressed"]
-[connection signal="pressed" from="TextureRect/Control/MarginContainer/RightButton" to="." method="_on_RightButton_pressed"]
-[connection signal="pressed" from="TextureRect/Control/MarginContainer/BuyButton" to="." method="_on_BuyButton_pressed"]
+[connection signal="pressed" from="TextureRect/MarginContainer/Control/MarginContainer/LeftButton" to="." method="_on_LeftButton_pressed"]
+[connection signal="pressed" from="TextureRect/MarginContainer/Control/MarginContainer/RightButton" to="." method="_on_RightButton_pressed"]
+[connection signal="pressed" from="TextureRect/MarginContainer/Control/MarginContainer/BuyButton" to="." method="_on_BuyButton_pressed"]

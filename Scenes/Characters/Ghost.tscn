@@ -1,52 +1,52 @@
-[gd_scene load_steps=23 format=3 uid="uid://bwx8r72rlijnl"]
+[gd_scene load_steps=23 format=3 uid="uid://dmo08twrj3km1"]
 
-[ext_resource type="Texture2D" uid="uid://vuh1vf57hseg" path="res://Assets/Entities.png" id="1"]
-[ext_resource type="Script" path="res://Scripts/Summon.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://bl4iglcswogmo" path="res://Assets/UI.png" id="3_mv164"]
+[ext_resource type="Script" path="res://Scripts/Summon.gd" id="1_w7sk5"]
+[ext_resource type="Texture2D" uid="uid://vuh1vf57hseg" path="res://Assets/Entities.png" id="2_1ww27"]
+[ext_resource type="Texture2D" uid="uid://bl4iglcswogmo" path="res://Assets/UI.png" id="3_ee8ts"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k0oga"]
-atlas = ExtResource("1")
-region = Rect2(48, 16, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7f3i"]
+atlas = ExtResource("2_1ww27")
+region = Rect2(48, 48, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2jnmj"]
-atlas = ExtResource("1")
-region = Rect2(64, 16, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdgyv"]
+atlas = ExtResource("2_1ww27")
+region = Rect2(64, 48, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_valpw"]
-atlas = ExtResource("1")
-region = Rect2(80, 16, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_6dwrn"]
+atlas = ExtResource("2_1ww27")
+region = Rect2(80, 48, 16, 16)
 
-[sub_resource type="AtlasTexture" id="5"]
-atlas = ExtResource("1")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_8r4br"]
+atlas = ExtResource("2_1ww27")
+region = Rect2(0, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="6"]
-atlas = ExtResource("1")
-region = Rect2(16, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gil6"]
+atlas = ExtResource("2_1ww27")
+region = Rect2(16, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="1"]
-atlas = ExtResource("1")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nc6w"]
+atlas = ExtResource("2_1ww27")
+region = Rect2(48, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="2"]
-atlas = ExtResource("1")
-region = Rect2(48, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cqrv"]
+atlas = ExtResource("2_1ww27")
+region = Rect2(64, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="3"]
-atlas = ExtResource("1")
-region = Rect2(64, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_y558a"]
+atlas = ExtResource("2_1ww27")
+region = Rect2(80, 32, 16, 16)
 
 [sub_resource type="SpriteFrames" id="4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k0oga")
+"texture": SubResource("AtlasTexture_o7f3i")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2jnmj")
+"texture": SubResource("AtlasTexture_wdgyv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_valpw")
+"texture": SubResource("AtlasTexture_6dwrn")
 }],
 "loop": true,
 "name": &"Chasing",
@@ -54,10 +54,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("5")
+"texture": SubResource("AtlasTexture_8r4br")
 }, {
 "duration": 1.0,
-"texture": SubResource("6")
+"texture": SubResource("AtlasTexture_1gil6")
 }],
 "loop": true,
 "name": &"Idle",
@@ -65,13 +65,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("1")
+"texture": SubResource("AtlasTexture_6nc6w")
 }, {
 "duration": 1.0,
-"texture": SubResource("2")
+"texture": SubResource("AtlasTexture_7cqrv")
 }, {
 "duration": 1.0,
-"texture": SubResource("3")
+"texture": SubResource("AtlasTexture_y558a")
 }],
 "loop": true,
 "name": &"Walk",
@@ -133,11 +133,11 @@ _data = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_poum1"]
-atlas = ExtResource("3_mv164")
+atlas = ExtResource("3_ee8ts")
 region = Rect2(96, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4tu8a"]
-atlas = ExtResource("3_mv164")
+atlas = ExtResource("3_ee8ts")
 region = Rect2(112, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j26o8"]
@@ -154,22 +154,22 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Skeleton" type="CharacterBody2D" groups=["Summon"]]
+[node name="Ghost" type="CharacterBody2D" groups=["Summon"]]
 z_index = 1
 y_sort_enabled = true
 collision_layer = 8
 collision_mask = 17
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("2")
+script = ExtResource("1_w7sk5")
 speed = 25.0
-max_health = 2
+max_health = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 clip_children = 2
 position = Vector2(0, -6)
 sprite_frames = SubResource("4")
-animation = &"Walk"
+animation = &"Chasing"
 
 [node name="ColorRect" type="ColorRect" parent="AnimatedSprite2D"]
 offset_left = -20.0

@@ -1,52 +1,52 @@
-[gd_scene load_steps=23 format=3 uid="uid://bwx8r72rlijnl"]
+[gd_scene load_steps=23 format=3 uid="uid://dxm86sxq7n2sj"]
 
-[ext_resource type="Texture2D" uid="uid://vuh1vf57hseg" path="res://Assets/Entities.png" id="1"]
-[ext_resource type="Script" path="res://Scripts/Summon.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://bl4iglcswogmo" path="res://Assets/UI.png" id="3_mv164"]
+[ext_resource type="Script" path="res://Scripts/Human.gd" id="1_qv44t"]
+[ext_resource type="Texture2D" uid="uid://vuh1vf57hseg" path="res://Assets/Entities.png" id="2_slywi"]
+[ext_resource type="Texture2D" uid="uid://bl4iglcswogmo" path="res://Assets/UI.png" id="3_3q60p"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k0oga"]
-atlas = ExtResource("1")
-region = Rect2(48, 16, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2m34f"]
+atlas = ExtResource("2_slywi")
+region = Rect2(48, 80, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2jnmj"]
-atlas = ExtResource("1")
-region = Rect2(64, 16, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4xpl"]
+atlas = ExtResource("2_slywi")
+region = Rect2(64, 80, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_valpw"]
-atlas = ExtResource("1")
-region = Rect2(80, 16, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ot780"]
+atlas = ExtResource("2_slywi")
+region = Rect2(80, 80, 16, 16)
 
-[sub_resource type="AtlasTexture" id="5"]
-atlas = ExtResource("1")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwv3l"]
+atlas = ExtResource("2_slywi")
+region = Rect2(0, 64, 16, 16)
 
-[sub_resource type="AtlasTexture" id="6"]
-atlas = ExtResource("1")
-region = Rect2(16, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvwfo"]
+atlas = ExtResource("2_slywi")
+region = Rect2(16, 64, 16, 16)
 
-[sub_resource type="AtlasTexture" id="1"]
-atlas = ExtResource("1")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_1awrs"]
+atlas = ExtResource("2_slywi")
+region = Rect2(48, 64, 16, 16)
 
-[sub_resource type="AtlasTexture" id="2"]
-atlas = ExtResource("1")
-region = Rect2(48, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsntl"]
+atlas = ExtResource("2_slywi")
+region = Rect2(64, 64, 16, 16)
 
-[sub_resource type="AtlasTexture" id="3"]
-atlas = ExtResource("1")
-region = Rect2(64, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdmhb"]
+atlas = ExtResource("2_slywi")
+region = Rect2(80, 64, 16, 16)
 
-[sub_resource type="SpriteFrames" id="4"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_pi26r"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k0oga")
+"texture": SubResource("AtlasTexture_2m34f")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2jnmj")
+"texture": SubResource("AtlasTexture_x4xpl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_valpw")
+"texture": SubResource("AtlasTexture_ot780")
 }],
 "loop": true,
 "name": &"Chasing",
@@ -54,10 +54,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("5")
+"texture": SubResource("AtlasTexture_bwv3l")
 }, {
 "duration": 1.0,
-"texture": SubResource("6")
+"texture": SubResource("AtlasTexture_gvwfo")
 }],
 "loop": true,
 "name": &"Idle",
@@ -65,31 +65,31 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("1")
+"texture": SubResource("AtlasTexture_1awrs")
 }, {
 "duration": 1.0,
-"texture": SubResource("2")
+"texture": SubResource("AtlasTexture_gsntl")
 }, {
 "duration": 1.0,
-"texture": SubResource("3")
+"texture": SubResource("AtlasTexture_hdmhb")
 }],
 "loop": true,
 "name": &"Walk",
 "speed": 4.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xuuvg"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dvfqw"]
 radius = 2.0
 height = 6.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ey5vf"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nrkqm"]
 radius = 5.0
 height = 14.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5prcs"]
-radius = 1961.56
+[sub_resource type="CircleShape2D" id="CircleShape2D_sobfu"]
+radius = 2265.11
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s7x0s"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4tlbm"]
 radius = 5.0
 height = 14.0
 
@@ -133,14 +133,14 @@ _data = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_poum1"]
-atlas = ExtResource("3_mv164")
+atlas = ExtResource("3_3q60p")
 region = Rect2(96, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4tu8a"]
-atlas = ExtResource("3_mv164")
+atlas = ExtResource("3_3q60p")
 region = Rect2(112, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_j26o8"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_13af2"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -154,22 +154,21 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Skeleton" type="CharacterBody2D" groups=["Summon"]]
-z_index = 1
+[node name="Angel" type="CharacterBody2D" groups=["Enemy"]]
+z_index = 5
 y_sort_enabled = true
-collision_layer = 8
-collision_mask = 17
+collision_layer = 16
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("2")
+script = ExtResource("1_qv44t")
 speed = 25.0
-max_health = 2
+max_health = 5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 clip_children = 2
 position = Vector2(0, -6)
-sprite_frames = SubResource("4")
-animation = &"Walk"
+sprite_frames = SubResource("SpriteFrames_pi26r")
+animation = &"Idle"
 
 [node name="ColorRect" type="ColorRect" parent="AnimatedSprite2D"]
 offset_left = -20.0
@@ -181,48 +180,46 @@ color = Color(0.45098, 0.0901961, 0.176471, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_xuuvg")
+shape = SubResource("CapsuleShape2D_dvfqw")
 
 [node name="HitBox" type="Area2D" parent="."]
 position = Vector2(0, -6)
-collision_layer = 8
-collision_mask = 16
+collision_layer = 16
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-shape = SubResource("CapsuleShape2D_ey5vf")
+shape = SubResource("CapsuleShape2D_nrkqm")
 
 [node name="DetectionArea" type="Area2D" parent="."]
-position = Vector2(0, -6)
-collision_layer = 8
-collision_mask = 16
+position = Vector2(0, 1)
+collision_layer = 16
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 position = Vector2(0, -7)
-shape = SubResource("CircleShape2D_5prcs")
+shape = SubResource("CircleShape2D_sobfu")
 
 [node name="HurtBox" type="Area2D" parent="."]
 position = Vector2(0, -6)
-collision_layer = 8
-collision_mask = 16
+collision_layer = 16
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-shape = SubResource("CapsuleShape2D_s7x0s")
+shape = SubResource("CapsuleShape2D_4tlbm")
 
 [node name="Timers" type="Node" parent="."]
 
 [node name="ChangeState" type="Timer" parent="Timers"]
+wait_time = 0.5
 autostart = true
 
-[node name="MovementTimer" type="Timer" parent="Timers"]
+[node name="Moving" type="Timer" parent="Timers"]
+wait_time = 0.5
 autostart = true
 
 [node name="HurtTimer" type="Timer" parent="Timers"]
 wait_time = 0.3
 one_shot = true
-
-[node name="IdleTimer" type="Timer" parent="Timers"]
-wait_time = 0.3
-autostart = true
 
 [node name="Effects" type="AnimationPlayer" parent="."]
 libraries = {
@@ -239,25 +236,20 @@ offset_bottom = 1.0
 
 [node name="Heart_One" type="AnimatedSprite2D" parent="Control"]
 position = Vector2(1, 0)
-sprite_frames = SubResource("SpriteFrames_j26o8")
+sprite_frames = SubResource("SpriteFrames_13af2")
 animation = &"Health"
-frame = 1
 
 [node name="Heart_One2" type="AnimatedSprite2D" parent="Control"]
 position = Vector2(7, 0)
-sprite_frames = SubResource("SpriteFrames_j26o8")
+sprite_frames = SubResource("SpriteFrames_13af2")
 animation = &"Health"
-frame = 1
 
 [node name="Heart_One3" type="AnimatedSprite2D" parent="Control"]
 position = Vector2(13, 0)
-sprite_frames = SubResource("SpriteFrames_j26o8")
+sprite_frames = SubResource("SpriteFrames_13af2")
 animation = &"Health"
-frame = 1
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 10.0
-target_desired_distance = 5.0
 path_postprocessing = 1
 debug_enabled = true
 
@@ -265,10 +257,14 @@ debug_enabled = true
 wait_time = 0.1
 autostart = true
 
+[node name="ChaseTimer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_exited" from="HurtBox" to="." method="_on_hurt_box_area_exited"]
 [connection signal="timeout" from="Timers/ChangeState" to="." method="_on_change_state_timer_timeout"]
-[connection signal="timeout" from="Timers/MovementTimer" to="." method="_on_MovementTimer_timeout"]
-[connection signal="timeout" from="Timers/IdleTimer" to="." method="_on_IdleTimer_timeout"]
+[connection signal="timeout" from="Timers/Moving" to="." method="_on_moving_timer_timeout"]
+[connection signal="timeout" from="NavigationTimer" to="." method="_on_navigation_timer_timeout"]

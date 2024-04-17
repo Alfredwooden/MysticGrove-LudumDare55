@@ -1,21 +1,38 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkud8ij8qu2dh"]
+[gd_scene load_steps=8 format=3 uid="uid://dkud8ij8qu2dh"]
 
 [ext_resource type="Script" path="res://Scripts/Ghost_seedpack.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://xuelymkgd7uh" path="res://Assets/Souls.png" id="2"]
 
-[sub_resource type="AtlasTexture" id="4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0i15m"]
 atlas = ExtResource("2")
-region = Rect2(0, 16, 16, 16)
+region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25amq"]
+atlas = ExtResource("2")
+region = Rect2(32, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k30x0"]
+atlas = ExtResource("2")
+region = Rect2(48, 64, 16, 16)
 
 [sub_resource type="SpriteFrames" id="2"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("4")
+"texture": SubResource("AtlasTexture_0i15m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25amq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0i15m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k30x0")
 }],
 "loop": true,
 "name": &"default",
-"speed": 6.0
+"speed": 2.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ejnua"]

@@ -80,4 +80,13 @@ wait_time = 3.0
 one_shot = true
 autostart = true
 
+[node name="SkeletonSpawnTimer" type="Timer" parent="."]
+
+[node name="GhostSpawnTimer" type="Timer" parent="."]
+
+[node name="DevilSpawnTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="SkeletonSpawnTimer" to="." method="_on_skeleton_spawn_timer_timeout"]
+[connection signal="timeout" from="GhostSpawnTimer" to="." method="_on_ghost_spawn_timer_timeout"]
+[connection signal="timeout" from="DevilSpawnTimer" to="." method="_on_devil_spawn_timer_timeout"]

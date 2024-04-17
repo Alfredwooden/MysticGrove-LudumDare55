@@ -31,7 +31,6 @@ func _update_color_rect():
 func change_to_day():
 	print("Changing to day")
 	$AnimationPlayer.play("Night_To_Day")
-	#remove_night_entities()
 	spawn_day_entities()
 	$Timer.wait_time = length_of_day
 	$Timer.start()
@@ -43,14 +42,50 @@ func change_to_night():
 	$Timer.wait_time = length_of_night
 	$Timer.start()
 	Global.set_time_of_day("night")
+	$SkeletonSpawnTimer.wait_time = 0.5
+	$SkeletonSpawnTimer.start()
+	$GhostSpawnTimer.wait_time = 0.5
+	$GhostSpawnTimer.start()
+	$DevilSpawnTimer.wait_time = 0.5
+	$DevilSpawnTimer.start()
 
 func spawn_day_entities():
 	var num_humans = Global.current_day
-	print("Spawning", num_humans, "humans")
-
-	# Get a reference to the World scene
+	var num_barbarians = 0
+	var num_angels = 0
+	
+	if Global.current_day >= 10:
+		num_barbarians = (Global.current_day - 10) / 5 + 1
+	if Global.current_day >= 20:
+		num_angels = (Global.current_day - 20) / 5 + 1
+	
+	print("Spawning", num_humans, "humans,", num_barbarians, "barbarians, and", num_angels, "angels")
+	
 	var world_scene = get_node("/root/World")
+	world_scene.spawn_human()
+	world_scene.spawn_barbarian()
+	world_scene.spawn_angel()
 
-	world_scene.spawn_human(num_humans)
-	world_scene.spawn_skeleton(1)
+func spawn_skeletons_at_night():
+	if Global.get_skull_souls() > 0:
+		var world_scene = get_node("/root/World")
+		world_scene.spawn_skeleton()
 
+func spawn_ghosts_at_night():
+	if Global.get_ghost_souls() > 0:
+		var world_scene = get_node("/root/World")
+		world_scene.spawn_ghost()
+
+func spawn_devils_at_night():
+	if Global.get_devil_souls() > 0:
+		var world_scene = get_node("/root/World")
+		world_scene.spawn_devil()
+
+func _on_skeleton_spawn_timer_timeout():
+	spawn_skeletons_at_night()
+
+func _on_ghost_spawn_timer_timeout():
+	spawn_ghosts_at_night()
+
+func _on_devil_spawn_timer_timeout():
+	spawn_devils_at_night()

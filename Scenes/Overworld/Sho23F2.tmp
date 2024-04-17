@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dxa56fu4v1j81"]
+[gd_scene load_steps=17 format=3 uid="uid://dxa56fu4v1j81"]
 
 [ext_resource type="Texture2D" uid="uid://bubbaqlvdvs35" path="res://Assets/Character.png" id="1"]
 [ext_resource type="Script" path="res://Scripts/Shop.gd" id="3"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cp8k0gvt4h1re" path="res://Scenes/UI/ShopMenu.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bih1ryx3mj5ok" path="res://Scenes/Farming/Skull_soulpack.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://dkud8ij8qu2dh" path="res://Scenes/Farming/Ghost_soulpack.tscn" id="6"]
-[ext_resource type="PackedScene" uid="uid://bm208651sattg" path="res://Scenes/Farming/Devil_soulpack.tscn" id="6_ds08g"]
 [ext_resource type="PackedScene" uid="uid://ciqn4p8aes3mk" path="res://Scenes/Overworld/Sell_Zone.tscn" id="7_h0rf6"]
 
 [sub_resource type="AtlasTexture" id="3"]
@@ -74,8 +73,8 @@ height = 26.0526
 [node name="Shop" type="StaticBody2D"]
 z_index = 1
 y_sort_enabled = true
-collision_layer = 5
-collision_mask = 5
+collision_layer = 255
+collision_mask = 255
 script = ExtResource("3")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -89,7 +88,7 @@ offset = Vector2(-8, -12)
 
 [node name="Sell_Zone" parent="Seller_Sprite" instance=ExtResource("7_h0rf6")]
 y_sort_enabled = false
-position = Vector2(-1, 1)
+position = Vector2(0, -5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gse04")
@@ -97,8 +96,6 @@ centered = false
 offset = Vector2(-24, -44)
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 5
-collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-4, 5)
@@ -108,15 +105,9 @@ shape = SubResource("CapsuleShape2D_xu172")
 [node name="External" type="Node2D" parent="."]
 
 [node name="Ghost_soulpack" parent="External" instance=ExtResource("6")]
-visible = false
 position = Vector2(29, 5)
 
-[node name="Devil_soulpack" parent="External" instance=ExtResource("6_ds08g")]
-visible = false
-position = Vector2(25, 8)
-
 [node name="Skull_soulpack" parent="External" instance=ExtResource("5")]
-visible = false
 position = Vector2(20, 10)
 
 [node name="ShopMenu" parent="External" instance=ExtResource("4")]

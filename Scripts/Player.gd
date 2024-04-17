@@ -21,6 +21,7 @@ signal hit_training_dummy
 
 func _ready():
 	effects.play("RESET")
+	add_to_group("Player")
 
 func _physics_process(delta):
 	motion = Vector2.ZERO

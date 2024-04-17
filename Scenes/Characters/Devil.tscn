@@ -1,52 +1,52 @@
-[gd_scene load_steps=23 format=3 uid="uid://bwx8r72rlijnl"]
+[gd_scene load_steps=23 format=3 uid="uid://c4hvwo843mold"]
 
-[ext_resource type="Texture2D" uid="uid://vuh1vf57hseg" path="res://Assets/Entities.png" id="1"]
-[ext_resource type="Script" path="res://Scripts/Summon.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://bl4iglcswogmo" path="res://Assets/UI.png" id="3_mv164"]
+[ext_resource type="Script" path="res://Scripts/Summon.gd" id="1_at32a"]
+[ext_resource type="Texture2D" uid="uid://vuh1vf57hseg" path="res://Assets/Entities.png" id="2_joup3"]
+[ext_resource type="Texture2D" uid="uid://bl4iglcswogmo" path="res://Assets/UI.png" id="3_gfl1k"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k0oga"]
-atlas = ExtResource("1")
-region = Rect2(48, 16, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_rx24p"]
+atlas = ExtResource("2_joup3")
+region = Rect2(144, 80, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2jnmj"]
-atlas = ExtResource("1")
-region = Rect2(64, 16, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_efg4q"]
+atlas = ExtResource("2_joup3")
+region = Rect2(160, 80, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_valpw"]
-atlas = ExtResource("1")
-region = Rect2(80, 16, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7hgq"]
+atlas = ExtResource("2_joup3")
+region = Rect2(176, 80, 16, 16)
 
-[sub_resource type="AtlasTexture" id="5"]
-atlas = ExtResource("1")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpnve"]
+atlas = ExtResource("2_joup3")
+region = Rect2(96, 64, 16, 16)
 
-[sub_resource type="AtlasTexture" id="6"]
-atlas = ExtResource("1")
-region = Rect2(16, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fqfd"]
+atlas = ExtResource("2_joup3")
+region = Rect2(112, 64, 16, 16)
 
-[sub_resource type="AtlasTexture" id="1"]
-atlas = ExtResource("1")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_skv05"]
+atlas = ExtResource("2_joup3")
+region = Rect2(144, 64, 16, 16)
 
-[sub_resource type="AtlasTexture" id="2"]
-atlas = ExtResource("1")
-region = Rect2(48, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbus5"]
+atlas = ExtResource("2_joup3")
+region = Rect2(160, 64, 16, 16)
 
-[sub_resource type="AtlasTexture" id="3"]
-atlas = ExtResource("1")
-region = Rect2(64, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_28pnd"]
+atlas = ExtResource("2_joup3")
+region = Rect2(176, 64, 16, 16)
 
 [sub_resource type="SpriteFrames" id="4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k0oga")
+"texture": SubResource("AtlasTexture_rx24p")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2jnmj")
+"texture": SubResource("AtlasTexture_efg4q")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_valpw")
+"texture": SubResource("AtlasTexture_b7hgq")
 }],
 "loop": true,
 "name": &"Chasing",
@@ -54,10 +54,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("5")
+"texture": SubResource("AtlasTexture_qpnve")
 }, {
 "duration": 1.0,
-"texture": SubResource("6")
+"texture": SubResource("AtlasTexture_2fqfd")
 }],
 "loop": true,
 "name": &"Idle",
@@ -65,13 +65,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("1")
+"texture": SubResource("AtlasTexture_skv05")
 }, {
 "duration": 1.0,
-"texture": SubResource("2")
+"texture": SubResource("AtlasTexture_pbus5")
 }, {
 "duration": 1.0,
-"texture": SubResource("3")
+"texture": SubResource("AtlasTexture_28pnd")
 }],
 "loop": true,
 "name": &"Walk",
@@ -133,11 +133,11 @@ _data = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_poum1"]
-atlas = ExtResource("3_mv164")
+atlas = ExtResource("3_gfl1k")
 region = Rect2(96, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4tu8a"]
-atlas = ExtResource("3_mv164")
+atlas = ExtResource("3_gfl1k")
 region = Rect2(112, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j26o8"]
@@ -154,22 +154,22 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Skeleton" type="CharacterBody2D" groups=["Summon"]]
+[node name="Devil" type="CharacterBody2D" groups=["Summon"]]
 z_index = 1
 y_sort_enabled = true
 collision_layer = 8
 collision_mask = 17
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("2")
+script = ExtResource("1_at32a")
 speed = 25.0
-max_health = 2
+max_health = 5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 clip_children = 2
 position = Vector2(0, -6)
 sprite_frames = SubResource("4")
-animation = &"Walk"
+animation = &"Chasing"
 
 [node name="ColorRect" type="ColorRect" parent="AnimatedSprite2D"]
 offset_left = -20.0

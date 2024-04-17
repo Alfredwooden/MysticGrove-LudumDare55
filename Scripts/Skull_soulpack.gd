@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 var selected = false
-var seed_type = 1 #Skull
+var seed_type = 3 #Devil
 
 func _ready():
 	$AnimatedSprite2D.play("default")

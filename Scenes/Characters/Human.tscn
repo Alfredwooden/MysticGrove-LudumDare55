@@ -162,6 +162,7 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_aidq6")
 speed = 25.0
+max_health = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 clip_children = 2

@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://bm208651sattg"]
+
+[ext_resource type="Script" path="res://Scripts/Skull_soulpack.gd" id="1_bckad"]
+[ext_resource type="Texture2D" uid="uid://xuelymkgd7uh" path="res://Assets/Souls.png" id="2_exp3o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h48bi"]
+atlas = ExtResource("2_exp3o")
+region = Rect2(16, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp1f1"]
+atlas = ExtResource("2_exp3o")
+region = Rect2(32, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f264g"]
+atlas = ExtResource("2_exp3o")
+region = Rect2(48, 80, 16, 16)
+
+[sub_resource type="SpriteFrames" id="2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h48bi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fp1f1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h48bi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f264g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r46nj"]
+radius = 5.0
+height = 12.0
+
+[node name="Devil_soulpack" type="StaticBody2D"]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_bckad")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("2")
+frame_progress = 0.86424
+centered = false
+offset = Vector2(-8, -10)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_r46nj")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]
