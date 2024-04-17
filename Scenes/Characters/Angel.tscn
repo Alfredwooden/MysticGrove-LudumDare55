@@ -234,18 +234,19 @@ offset_top = -16.0
 offset_right = 7.0
 offset_bottom = 1.0
 
-[node name="Heart_One" type="AnimatedSprite2D" parent="Control"]
-position = Vector2(1, 0)
-sprite_frames = SubResource("SpriteFrames_13af2")
-animation = &"Health"
+[node name="HealthContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/separation = 6
 
-[node name="Heart_One2" type="AnimatedSprite2D" parent="Control"]
-position = Vector2(7, 0)
-sprite_frames = SubResource("SpriteFrames_13af2")
-animation = &"Health"
+[node name="Heart" type="Panel" parent="Control/HealthContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
 
-[node name="Heart_One3" type="AnimatedSprite2D" parent="Control"]
-position = Vector2(13, 0)
+[node name="HeartSprite" type="AnimatedSprite2D" parent="Control/HealthContainer/Heart"]
 sprite_frames = SubResource("SpriteFrames_13af2")
 animation = &"Health"
 

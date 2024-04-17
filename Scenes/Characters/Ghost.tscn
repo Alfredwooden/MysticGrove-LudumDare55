@@ -132,22 +132,22 @@ _data = {
 "RESET": SubResource("Animation_p43t6")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_poum1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xtr1"]
 atlas = ExtResource("3_ee8ts")
 region = Rect2(96, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4tu8a"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_otivg"]
 atlas = ExtResource("3_ee8ts")
 region = Rect2(112, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_j26o8"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_3nbxn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_poum1")
+"texture": SubResource("AtlasTexture_6xtr1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4tu8a")
+"texture": SubResource("AtlasTexture_otivg")
 }],
 "loop": true,
 "name": &"Health",
@@ -229,32 +229,6 @@ libraries = {
 "": SubResource("AnimationLibrary_iyx25")
 }
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -7.0
-offset_top = -16.0
-offset_right = 7.0
-offset_bottom = 1.0
-
-[node name="Heart_One" type="AnimatedSprite2D" parent="Control"]
-position = Vector2(1, 0)
-sprite_frames = SubResource("SpriteFrames_j26o8")
-animation = &"Health"
-frame = 1
-
-[node name="Heart_One2" type="AnimatedSprite2D" parent="Control"]
-position = Vector2(7, 0)
-sprite_frames = SubResource("SpriteFrames_j26o8")
-animation = &"Health"
-frame = 1
-
-[node name="Heart_One3" type="AnimatedSprite2D" parent="Control"]
-position = Vector2(13, 0)
-sprite_frames = SubResource("SpriteFrames_j26o8")
-animation = &"Health"
-frame = 1
-
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 10.0
 target_desired_distance = 5.0
@@ -264,6 +238,30 @@ debug_enabled = true
 [node name="NavigationTimer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -7.0
+offset_top = -16.0
+offset_right = 7.0
+offset_bottom = 1.0
+
+[node name="HealthContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/separation = 6
+
+[node name="Heart" type="Panel" parent="Control/HealthContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="HeartSprite" type="AnimatedSprite2D" parent="Control/HealthContainer/Heart"]
+sprite_frames = SubResource("SpriteFrames_3nbxn")
+animation = &"Health"
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

@@ -15,7 +15,7 @@ func _ready():
 	animated_sprite.play("Idle")
 	soul_sprite.visible = false
 	click_timer = Timer.new()
-	click_timer.wait_time = 1.0 / clicks_per_second
+	click_timer.wait_time = 0.5 / clicks_per_second
 	click_timer.one_shot = true
 	click_timer.connect("timeout", _on_click_timer_timeout)
 	add_child(click_timer)

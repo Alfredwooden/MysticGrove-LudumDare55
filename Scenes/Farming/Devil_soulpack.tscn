@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bm208651sattg"]
 
-[ext_resource type="Script" path="res://Scripts/Skull_soulpack.gd" id="1_bckad"]
+[ext_resource type="Script" path="res://Scripts/Devil_seedpack.gd" id="1_h16el"]
 [ext_resource type="Texture2D" uid="uid://xuelymkgd7uh" path="res://Assets/Souls.png" id="2_exp3o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h48bi"]
@@ -42,7 +42,7 @@ height = 12.0
 [node name="Devil_soulpack" type="StaticBody2D"]
 z_index = 1
 y_sort_enabled = true
-script = ExtResource("1_bckad")
+script = ExtResource("1_h16el")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("2")

@@ -241,13 +241,13 @@ offset = Vector2(-8, -23.185)
 [node name="Timers" type="Node" parent="."]
 
 [node name="Skull_Timer" type="Timer" parent="Timers"]
-wait_time = 2.0
+wait_time = 5.0
 
 [node name="Ghost_Timer" type="Timer" parent="Timers"]
-wait_time = 2.0
+wait_time = 8.0
 
 [node name="Devil_Timer" type="Timer" parent="Timers"]
-wait_time = 2.0
+wait_time = 10.0
 
 [node name="SoulInterface" type="Control" parent="."]
 layout_mode = 3

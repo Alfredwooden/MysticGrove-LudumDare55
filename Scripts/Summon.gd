@@ -12,7 +12,12 @@ extends CharacterBody2D
 @onready var hurt_box = $HurtBox
 @onready var hit_box = $HitBox
 @onready var effects = $Effects
-@onready var health_dots = [$Control/Heart_One, $Control/Heart_One2, $Control/Heart_One3]
+#@onready var health_dots = [$Control/Heart_One, $Control/Heart_One2, $Control/Heart_One3]
+
+@onready var hearts_container = $Control/HealthContainer # Contains the health dots
+@onready var heart = $Control/HealthContainer/Heart # Container of the sprite
+@onready var heart_sprite = $Control/HealthContainer/Heart/HeartSprite # Animated sprite with 2 frames. 0 = full, 1 = empty
+
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 @onready var idle_timer := $Timers/IdleTimer
 @onready var movement_timer := $Timers/MovementTimer
@@ -131,8 +136,23 @@ func die():
 	queue_free()
 
 func update_health_dots():
+	var heart_nodes = hearts_container.get_children()
+	
+	# Update the existing heart nodes
 	for i in range(max_health):
-		health_dots[i].frame = 1 if i < current_health else 0
+		if i < heart_nodes.size():
+			var heart_node = heart_nodes[i]
+			if heart_node.has_node("HeartSprite"):
+				if i < current_health:
+					heart_node.get_node("HeartSprite").frame = 1  # Full heart
+				else:
+					heart_node.get_node("HeartSprite").frame = 0  # Empty heart
+		else:
+			# Create a new heart node if needed
+			var new_heart = heart.duplicate() if is_instance_valid(heart) else Node2D.new()
+			hearts_container.add_child(new_heart)
+			if new_heart.has_node("HeartSprite"):
+				new_heart.get_node("HeartSprite").frame = 1  # Empty heart
 
 func _on_IdleTimer_timeout():
 	if current_movement_state == MovementState.IDLE:
